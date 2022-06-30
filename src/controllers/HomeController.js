@@ -87,7 +87,17 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+    let response;
 
+    let payload = received_postback.payload;
+
+    if (payload === 'yes') {
+        response = { 'text': 'Thanks!' }
+    } else if (payload === 'no') {
+        response = { 'text': 'Oops, try sending another image.' }
+    } else if (payload === 'GET_STARTED') {
+        response = { 'text': 'Xin chào mừng bạn đến với Mollie Shop' };
+    }
 }
 
 // Sends response messages via the Send API
