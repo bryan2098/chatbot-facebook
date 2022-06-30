@@ -27,7 +27,7 @@ let callSendAPI = (sender_psid, response) => {
     });
 }
 
-let handleGetStarted = () => {
+let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response = { 'text': 'Xin chào mừng bạn đến với Mollie Shop' };
