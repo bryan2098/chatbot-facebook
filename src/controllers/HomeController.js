@@ -98,6 +98,8 @@ function handlePostback(sender_psid, received_postback) {
     } else if (payload === 'GET_STARTED') {
         response = { 'text': 'Xin chào mừng bạn đến với Mollie Shop' };
     }
+
+    callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
