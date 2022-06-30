@@ -91,13 +91,24 @@ function handlePostback(sender_psid, received_postback) {
 
     let payload = received_postback.payload;
 
-    if (payload === 'yes') {
-        response = { 'text': 'Thanks!' }
-    } else if (payload === 'no') {
-        response = { 'text': 'Oops, try sending another image.' }
-    } else if (payload === 'GET_STARTED') {
-        response = { 'text': 'Xin chào mừng bạn đến với Mollie Shop' };
+    switch (payload) {
+        case 'yes':
+            response = { 'text': 'Thanks!' };
+            break;
+
+        case 'no':
+            response = { 'text': 'Oops, try sending another image.' };
+            break;
+
+        case 'GET_STARTED':
+            response = { 'text': 'Xin chào mừng bạn đến với Mollie Shop' };
+            break;
+
+        default:
+            response = { 'text': `oop! I don't know response with postback ${payload}` };
+            break;
     }
+
 
     callSendAPI(sender_psid, response);
 }
