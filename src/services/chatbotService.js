@@ -28,10 +28,10 @@ let callSendAPI = (response) => {
 }
 
 let handleGetStarted = () => {
-    return Promise(async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         try {
             let response = { 'text': 'Xin chào mừng bạn đến với Mollie Shop' };
-            await this.callSendAPI(response);
+            await callSendAPI(response);
             resolve('done');
         } catch (error) {
             reject(error)
