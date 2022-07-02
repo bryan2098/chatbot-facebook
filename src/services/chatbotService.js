@@ -3,6 +3,11 @@ import request from "request";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
+const IMAGES = [
+    'https://res.cloudinary.com/dvweth7yl/image/upload/v1656778684/product/z3533592465888_34e9848417e25ad68aea56a81c56d115.jpg',
+]
+
+
 let callSendAPI = (sender_psid, response) => {
     // Construct the message body
     let request_body = {
@@ -51,13 +56,53 @@ let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
-            let response = { 'text': `Xin chào mừng ${username} đến với Mollie Shop` };
-            await callSendAPI(sender_psid, response);
+
+            // send text message
+            let responseText = { 'text': `Xin chào mừng ${username} đến với Mollie Shop` };
+            await callSendAPI(sender_psid, responseText);
+
+
+            // send generic message
+            let responseGenericMessage = sendGetStartedTemplate();
+            await callSendAPI(sender_psid, responseGenericMessage);
+
+
             resolve('done');
         } catch (error) {
             reject(error)
         }
     })
+}
+
+
+let sendGetStartedTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Xin chào bạn đến với Mollie Shop",
+                    "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
+                    "image_url": IMAGES[0],
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
+                            "payload": "LIST_PRODUCT",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "SHOPEE",
+                            "payload": "LINK_SHOPEE",
+                        }
+                    ],
+                }]
+            }
+        }
+    }
+
+    return response;
 }
 
 module.exports = {
