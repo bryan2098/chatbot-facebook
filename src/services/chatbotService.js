@@ -35,10 +35,9 @@ let getUserName = async (sender_psid) => {
         "qs": { "access_token": PAGE_ACCESS_TOKEN },
         "method": "GET",
     }, (err, res, body) => {
-        console.log('body', body);
 
         if (!err) {
-            let response = JSON.parse(res);
+            let response = JSON.parse(body);
             username = `${response.first_name} ${response.last_name}`;
         } else {
             console.error("Unable to send message:" + err);
