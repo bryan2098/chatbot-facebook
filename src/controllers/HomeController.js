@@ -131,6 +131,7 @@ async function handlePostback(sender_psid, received_postback) {
             response = { 'text': 'Oops, try sending another image.' };
             break;
 
+        case 'RESTART_BOT':
         case 'GET_STARTED':
             await chatbotService.handleGetStarted(sender_psid);
             break;
@@ -213,13 +214,13 @@ let setupPersistentMenu = async (req, res) => {
                     },
                     {
                         "type": "web_url",
-                        "title": "Fan Page Mollie",
+                        "title": "Fanpage Mollie",
                         "url": "https://www.facebook.com/mollietrend/",
                         "webview_height_ratio": "full"
                     },
                     {
                         "type": "postback",
-                        "title": "Bắt đầu lại",
+                        "title": "Khởi động lại bot",
                         "payload": "RESTART_BOT"
                     }
                 ]
