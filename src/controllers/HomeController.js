@@ -194,9 +194,63 @@ let setupProfile = async (req, res) => {
 }
 
 
+
+let setupPersistentMenu = async (req, res) => {
+    // call profile facebook api
+
+    // Construct the message body
+    let request_body = {
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "type": "web_url",
+                        "title": "Shopee Mollie",
+                        "url": "https://shopee.vn/mollieshop2501",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "Fan Page Mollie",
+                        "url": "https://www.facebook.com/mollietrend/",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Bắt đầu lại",
+                        "payload": "RESTART_BOT"
+                    }
+                ]
+            }
+        ]
+    };
+
+    // Send the HTTP request to the Messenger Platform
+    await request({
+        "uri": `https://graph.facebook.com/v14.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        console.log(body);
+
+        if (!err) {
+            console.log('Setup perssistent menu success');
+        } else {
+            console.erorr("Unable to setup user profile: " + err);
+        }
+    });
+
+    return res.send("Set up persistent menu success");
+}
+
+
 module.exports = {
     getHomePage: getHomePage,
     postWebhook: postWebhook,
     getWebhook: getWebhook,
-    setupProfile: setupProfile
+    setupProfile: setupProfile,
+    setupPersistentMenu: setupPersistentMenu
 }
