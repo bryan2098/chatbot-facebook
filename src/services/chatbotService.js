@@ -158,23 +158,6 @@ let getListProductTemplate = () => {
                                 "payload": "BEST_SELLER",
                             },
                         ],
-                    },
-                    {
-                        "title": "Xin chào bạn đến với Mollie Shop",
-                        "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
-                        "image_url": IMAGES[0],
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
-                                "payload": "LIST_PRODUCT",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "SHOPEE",
-                                "payload": "LINK_SHOPEE",
-                            }
-                        ],
                     }
                 ]
             }

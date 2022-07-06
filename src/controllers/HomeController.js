@@ -153,7 +153,13 @@ let setupProfile = async (req, res) => {
         "get_started": {
             "payload": "GET_STARTED"
         },
-        "whitelisted_domains": ["https://bot-mollie.herokuapp.com/"]
+        "whitelisted_domains": ["https://bot-mollie.herokuapp.com/"],
+        "greeting": [
+            {
+                "locale": "vi_VN",
+                "text": "Bắt đầu chat"
+            }
+        ]
     }
 
     // Send the HTTP request to the Messenger Platform
