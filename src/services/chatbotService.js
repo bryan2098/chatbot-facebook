@@ -63,7 +63,7 @@ let handleGetStarted = (sender_psid) => {
 
 
             // send generic message
-            let responseGenericMessage = sendGetStartedTemplate();
+            let responseGenericMessage = getStartedTemplate();
             await callSendAPI(sender_psid, responseGenericMessage);
 
 
@@ -75,7 +75,7 @@ let handleGetStarted = (sender_psid) => {
 }
 
 
-let sendGetStartedTemplate = () => {
+let getStartedTemplate = () => {
     let response = {
         "attachment": {
             "type": "template",
@@ -105,6 +105,103 @@ let sendGetStartedTemplate = () => {
     return response;
 }
 
+
+let getListProductTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Danh sách sản phẩm nổi bật của Mollie",
+                        "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Set",
+                                "payload": "SET_LIST",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "ĐẦM",
+                                "payload": "DRESS_LIST",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "VÁY",
+                                "payload": "SKIRT_LIST",
+                            }
+                        ],
+                    },
+                    {
+                        "title": "Giờ mở cửa",
+                        "subtitle": "Tất cả các ngày trong tuần",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "MUA SẢN PHẨM",
+                                "payload": "BUY_PRODUCT",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Kích cỡ chung của shop",
+                        "subtitle": "Kích cỡ của shop phù hợp với đa số phụ nữ Việt Nam < 58kg",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "CÁC SẢN PHẨM BÁN CHẠY",
+                                "payload": "BEST_SELLER",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Xin chào bạn đến với Mollie Shop",
+                        "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
+                                "payload": "LIST_PRODUCT",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "SHOPEE",
+                                "payload": "LINK_SHOPEE",
+                            }
+                        ],
+                    }
+                ]
+            }
+        }
+    }
+
+    return response;
+}
+
+
+let handleSendListProduct = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            // send generic message
+            let response = getListProductTemplate();
+            await callSendAPI(sender_psid, responseGenericMessage);
+
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 module.exports = {
-    handleGetStarted: handleGetStarted
+    handleGetStarted: handleGetStarted,
+    handleSendListProduct: handleSendListProduct
 }
