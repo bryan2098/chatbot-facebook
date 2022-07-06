@@ -156,6 +156,10 @@ let setupProfile = async (req, res) => {
         "whitelisted_domains": ["https://bot-mollie.herokuapp.com/"],
         "greeting": [
             {
+                "locale": "default",
+                "text": "Bắt đầu chat"
+            },
+            {
                 "locale": "vi_VN",
                 "text": "Bắt đầu chat"
             }
