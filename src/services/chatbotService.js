@@ -185,7 +185,7 @@ let getListProductTemplate = () => {
 }
 
 
-let handleSendListProduct = () => {
+let handleSendListProduct = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
