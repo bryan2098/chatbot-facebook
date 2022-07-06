@@ -191,7 +191,7 @@ let handleSendListProduct = () => {
 
             // send generic message
             let response = getListProductTemplate();
-            await callSendAPI(sender_psid, responseGenericMessage);
+            await callSendAPI(sender_psid, response);
 
 
             resolve('done');
