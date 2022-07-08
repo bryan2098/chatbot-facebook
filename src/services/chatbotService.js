@@ -226,6 +226,10 @@ async function handlePostback(sender_psid, received_postback) {
         case 'BUY_PRODUCT':
             break;
 
+        case 'BACK_TO_LIST':
+            await handleBackToList(sender_psid);
+            break;
+
 
         default:
             response = { 'text': `oop! I don't know response with postback ${payload}` };
@@ -253,6 +257,8 @@ function handleMessage(sender_psid, received_message) {
     // Sends the response message
     callSendAPI(sender_psid, response);
 }
+
+
 
 
 let getSetListTemplate = () => {
@@ -312,6 +318,18 @@ let getSetListTemplate = () => {
                                 "payload": "BUY_PRODUCT",
                             },
                         ],
+                    },
+                    {
+                        "title": "Quay trở lại",
+                        "subtitle": "Quay trở lại danh sách sản phẩm",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Quay trở lại",
+                                "payload": "BACK_TO_LIST",
+                            },
+                        ],
                     }
                 ]
             }
@@ -327,7 +345,7 @@ let handleSendSetList = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getListProductTemplate();
+            let response = getSetListTemplate();
             await callSendAPI(sender_psid, response);
 
 
@@ -368,6 +386,10 @@ let handleSendSkirtList = (sender_psid) => {
             reject(error)
         }
     })
+}
+
+let handleBackToList = async (sender_psid) => {
+    await handleSendListProduct(sender_psid);
 }
 
 module.exports = {
