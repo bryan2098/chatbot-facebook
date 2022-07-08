@@ -184,7 +184,209 @@ let handleSendListProduct = (sender_psid) => {
     })
 }
 
+// Handles messaging_postbacks events
+async function handlePostback(sender_psid, received_postback) {
+    let response;
+
+    let payload = received_postback.payload;
+
+    switch (payload) {
+        case 'yes':
+            response = { 'text': 'Thanks!' };
+            break;
+
+        case 'no':
+            response = { 'text': 'Oops, try sending another image.' };
+            break;
+
+        case 'RESTART_BOT':
+        case 'GET_STARTED':
+            await chatbotService.handleGetStarted(sender_psid);
+            break;
+
+        case 'LIST_PRODUCT':
+            await chatbotService.handleSendListProduct(sender_psid);
+            break;
+
+        case 'SET_LIST':
+            await chatbotService.handleSendSetList(sender_psid);
+            break;
+
+        case 'DRESS_LIST':
+            await chatbotService.handleSendDressList(sender_psid);
+            break;
+
+        case 'SKIRT_LIST':
+            await chatbotService.handleSendSkirtList(sender_psid);
+            break;
+
+
+        default:
+            response = { 'text': `oop! I don't know response with postback ${payload}` };
+            break;
+    }
+
+
+    // callSendAPI(sender_psid, response);
+}
+
+
+// Handles messages events
+function handleMessage(sender_psid, received_message) {
+    let response;
+
+    // Check if the message contains text
+    if (received_message.text) {
+
+        // Create the payload for a basic text message
+        response = {
+            "text": `Chào mừng bạn đến với Mollie Shop. Bạn đợi mình một chút nhé. Mình sẽ trả lời ngay <3`
+        }
+    }
+
+    // Sends the response message
+    callSendAPI(sender_psid, response);
+}
+
+
+let getSetListTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Chi Tiết",
+                                "payload": "PRODUCT_DETAIL",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Mua",
+                                "payload": "BUY_PRODUCT",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Chi Tiết",
+                                "payload": "PRODUCT_DETAIL",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Mua",
+                                "payload": "BUY_PRODUCT",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Chi Tiết",
+                                "payload": "PRODUCT_DETAIL",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Mua",
+                                "payload": "BUY_PRODUCT",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Chi Tiết",
+                                "payload": "PRODUCT_DETAIL",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Mua",
+                                "payload": "BUY_PRODUCT",
+                            },
+                        ],
+                    }
+                ]
+            }
+        }
+    }
+
+    return response;
+}
+
+
+let handleSendSetList = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            // send generic message
+            let response = getListProductTemplate();
+            await callSendAPI(sender_psid, response);
+
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+let handleSendDressList = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            // send generic message
+            let response = getSetListTemplate();
+            await callSendAPI(sender_psid, response);
+
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+let handleSendSkirtList = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            // send generic message
+            let response = getSetListTemplate();
+            await callSendAPI(sender_psid, response);
+
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 module.exports = {
     handleGetStarted: handleGetStarted,
-    handleSendListProduct: handleSendListProduct
+    handleSendListProduct: handleSendListProduct,
+    handlePostback: handlePostback,
+    handleMessage: handleMessage,
+    handleSendSetList: handleSendSetList,
+    handleSendDressList: handleSendDressList,
+    handleSendSkirtList: handleSendSkirtList
 }

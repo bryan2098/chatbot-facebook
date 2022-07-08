@@ -29,9 +29,9 @@ let postWebhook = (req, res) => {
             // Check if the event is a message or postback and
             // pass the event to the appropriate handler function
             if (webhook_event.message) {
-                handleMessage(sender_psid, webhook_event.message);
+                chatbotService.handleMessage(sender_psid, webhook_event.message);
             } else if (webhook_event.postback) {
-                handlePostback(sender_psid, webhook_event.postback);
+                chatbotService.handlePostback(sender_psid, webhook_event.postback);
             }
         });
 
@@ -69,56 +69,6 @@ let getWebhook = (req, res) => {
     }
 }
 
-// Handles messages events
-function handleMessage(sender_psid, received_message) {
-    let response;
-
-    // Check if the message contains text
-    if (received_message.text) {
-
-        // Create the payload for a basic text message
-        response = {
-            "text": `Chào mừng bạn đến với Mollie Shop. Bạn đợi mình một chút nhé. Mình sẽ trả lời ngay <3`
-        }
-    }
-
-    // Sends the response message
-    callSendAPI(sender_psid, response);
-}
-
-// Handles messaging_postbacks events
-async function handlePostback(sender_psid, received_postback) {
-    let response;
-
-    let payload = received_postback.payload;
-
-    switch (payload) {
-        case 'yes':
-            response = { 'text': 'Thanks!' };
-            break;
-
-        case 'no':
-            response = { 'text': 'Oops, try sending another image.' };
-            break;
-
-        case 'RESTART_BOT':
-        case 'GET_STARTED':
-            await chatbotService.handleGetStarted(sender_psid);
-            break;
-
-        case 'LIST_PRODUCT':
-            await chatbotService.handleSendListProduct(sender_psid);
-            break;
-
-
-        default:
-            response = { 'text': `oop! I don't know response with postback ${payload}` };
-            break;
-    }
-
-
-    // callSendAPI(sender_psid, response);
-}
 
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
@@ -153,17 +103,7 @@ let setupProfile = async (req, res) => {
         "get_started": {
             "payload": "GET_STARTED"
         },
-        "whitelisted_domains": ["https://bot-mollie.herokuapp.com/"],
-        "greeting": [
-            {
-                "locale": "default",
-                "text": "Bắt đầu chat"
-            },
-            {
-                "locale": "vi_VN",
-                "text": "Bắt đầu chat"
-            }
-        ]
+        "whitelisted_domains": ["https://bot-mollie.herokuapp.com/"]
     }
 
     // Send the HTTP request to the Messenger Platform
@@ -231,6 +171,7 @@ let setupPersistentMenu = async (req, res) => {
 
     return res.send("Set up persistent menu success");
 }
+
 
 
 module.exports = {
