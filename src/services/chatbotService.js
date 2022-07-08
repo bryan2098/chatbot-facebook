@@ -201,23 +201,29 @@ async function handlePostback(sender_psid, received_postback) {
 
         case 'RESTART_BOT':
         case 'GET_STARTED':
-            await chatbotService.handleGetStarted(sender_psid);
+            await handleGetStarted(sender_psid);
             break;
 
         case 'LIST_PRODUCT':
-            await chatbotService.handleSendListProduct(sender_psid);
+            await handleSendListProduct(sender_psid);
             break;
 
         case 'SET_LIST':
-            await chatbotService.handleSendSetList(sender_psid);
+            await handleSendSetList(sender_psid);
             break;
 
         case 'DRESS_LIST':
-            await chatbotService.handleSendDressList(sender_psid);
+            await handleSendDressList(sender_psid);
             break;
 
         case 'SKIRT_LIST':
-            await chatbotService.handleSendSkirtList(sender_psid);
+            await handleSendSkirtList(sender_psid);
+            break;
+
+        case 'PRODUCT_DETAIL':
+            break;
+
+        case 'BUY_PRODUCT':
             break;
 
 
@@ -256,23 +262,6 @@ let getSetListTemplate = () => {
             "payload": {
                 "template_type": "generic",
                 "elements": [
-                    {
-                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
-                        "image_url": IMAGES[0],
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Chi Tiết",
-                                "payload": "PRODUCT_DETAIL",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Mua",
-                                "payload": "BUY_PRODUCT",
-                            },
-                        ],
-                    },
                     {
                         "title": "Set Áo Trễ Vai Váy Dài Chữ A",
                         "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
