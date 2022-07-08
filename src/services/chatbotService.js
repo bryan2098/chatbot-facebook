@@ -221,6 +221,7 @@ async function handlePostback(sender_psid, received_postback) {
             break;
 
         case 'PRODUCT_DETAIL':
+            await handleDetailProduct(sender_psid);
             break;
 
         case 'BUY_PRODUCT':
@@ -390,6 +391,63 @@ let handleSendSkirtList = (sender_psid) => {
 
 let handleBackToList = async (sender_psid) => {
     await handleSendListProduct(sender_psid);
+}
+
+
+let getProductDetailTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                    },
+                    {
+                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                    },
+                    {
+                        "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "image_url": IMAGES[0],
+                    },
+                    {
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Mua",
+                                "payload": "BUY_PRODUCT",
+                            },
+                        ],
+                    },
+                ]
+            }
+        }
+    }
+
+    return response;
+}
+
+
+let handleDetailProduct = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            // send generic message
+            let response = getProductDetailTemplate();
+            await callSendAPI(sender_psid, response);
+
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
 }
 
 module.exports = {
