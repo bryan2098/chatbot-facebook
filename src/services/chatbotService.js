@@ -403,17 +403,17 @@ let getProductDetailTemplate = () => {
                 "elements": [
                     {
                         "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "subtitle": "296.000đ",
                         "image_url": IMAGES[0],
                     },
                     {
                         "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "subtitle": "296.000đ",
                         "image_url": IMAGES[0],
                     },
                     {
                         "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-                        "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
+                        "subtitle": "296.000đ",
                         "image_url": IMAGES[0],
                     },
                     {
@@ -425,6 +425,18 @@ let getProductDetailTemplate = () => {
                             },
                         ],
                     },
+                    {
+                        "title": "Quay trở lại",
+                        "subtitle": "Quay trở lại danh sách sản phẩm",
+                        "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Quay trở lại",
+                                "payload": "BACK_TO_LIST",
+                            },
+                        ],
+                    }
                 ]
             }
         }
