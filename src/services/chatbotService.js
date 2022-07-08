@@ -417,15 +417,6 @@ let getProductDetailTemplate = () => {
                         "image_url": IMAGES[0],
                     },
                     {
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Mua",
-                                "payload": "BUY_PRODUCT",
-                            },
-                        ],
-                    },
-                    {
                         "title": "Quay trở lại",
                         "subtitle": "Quay trở lại danh sách sản phẩm",
                         "image_url": IMAGES[0],
