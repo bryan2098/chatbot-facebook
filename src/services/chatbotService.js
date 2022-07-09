@@ -192,7 +192,7 @@ let getListProductTemplate = () => {
                         "image_url": IMAGES[0],
                         "buttons": [
                             {
-                                "type": "weburl",
+                                "type": "web_url",
                                 "url": `${process.env.URL_WEB_VIEW_ORDER}`,
                                 "title": "Mua sản phẩm",
                                 "webview_height_ratio": "tall",
@@ -228,7 +228,6 @@ let handleSendListProduct = (sender_psid) => {
             // send generic message
             let response = getListProductTemplate();
             await callSendAPI(sender_psid, response);
-
 
             resolve('done');
         } catch (error) {
