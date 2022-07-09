@@ -145,6 +145,7 @@ let getStartedTemplate = () => {
                         {
                             "type": "postback",
                             "title": "SHOPEE",
+                            "url": "https://shopee.vn/mollieshop2501",
                             "payload": "LINK_SHOPEE",
                         }
                     ],
@@ -276,6 +277,10 @@ async function handlePostback(sender_psid, received_postback) {
             break;
 
         case 'BUY_PRODUCT':
+            break;
+
+        case 'SHOW_IMAGE':
+            await handleShowImage(sender_psid);
             break;
 
         case 'BACK_TO_LIST':
@@ -466,6 +471,13 @@ let getProductDetailTemplate = () => {
                         "title": "Set Áo Trễ Vai Váy Dài Chữ A",
                         "subtitle": "296.000đ",
                         "image_url": IMAGES[0],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Hiển thị ảnh",
+                                "payload": "SHOW_IMAGE",
+                            },
+                        ],
                     },
                     {
                         "title": "Quay trở lại",
@@ -495,6 +507,72 @@ let handleDetailProduct = (sender_psid) => {
             // send generic message
             let response = getProductDetailTemplate();
             await callSendAPI(sender_psid, response);
+
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+
+let getImageTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "image",
+            "payload": {
+                "url": IMAGES[0],
+                "is_reusable": true
+            }
+        }
+    };
+
+    return response;
+}
+
+
+let getButtonTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": "What do you want to do next?",
+                "buttons": [
+                    {
+                        "type": "postback",
+                        "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
+                        "payload": "LIST_PRODUCT",
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Mua",
+                        "payload": "BUY_PRODUCT",
+                    }
+                ]
+            }
+        }
+    }
+
+    return response;
+}
+
+let handleShowImage = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            // send an image 
+            let responseImage = getImageTemplate();
+            // send a button templates
+            let responseBtn = getButtonTemplate();
+
+
+
+            // send generic message
+
+            await callSendAPI(sender_psid, responseImage);
+            await callSendAPI(sender_psid, responseBtn);
 
 
             resolve('done');
