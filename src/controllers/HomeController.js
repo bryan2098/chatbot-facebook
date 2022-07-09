@@ -173,11 +173,17 @@ let setupPersistentMenu = async (req, res) => {
 }
 
 
+let handleOrder = (req, res) => {
+    return res.render('order.ejs');
+}
+
+
 
 module.exports = {
     getHomePage: getHomePage,
     postWebhook: postWebhook,
     getWebhook: getWebhook,
     setupProfile: setupProfile,
-    setupPersistentMenu: setupPersistentMenu
+    setupPersistentMenu: setupPersistentMenu,
+    handleOrder: handleOrder
 }

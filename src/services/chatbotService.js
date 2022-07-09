@@ -192,9 +192,11 @@ let getListProductTemplate = () => {
                         "image_url": IMAGES[0],
                         "buttons": [
                             {
-                                "type": "postback",
-                                "title": "MUA SẢN PHẨM",
-                                "payload": "BUY_PRODUCT",
+                                "type": "weburl",
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "title": "Mua sản phẩm",
+                                "webview_height_ratio": "tall",
+                                "messenger_extensions": true
                             },
                         ],
                     },
@@ -275,9 +277,6 @@ async function handlePostback(sender_psid, received_postback) {
             await handleDetailProduct(sender_psid);
             break;
 
-        case 'BUY_PRODUCT':
-            break;
-
         case 'SHOW_IMAGE':
             await handleShowImage(sender_psid);
             break;
@@ -335,9 +334,11 @@ let getSetListTemplate = () => {
                                 "payload": "PRODUCT_DETAIL",
                             },
                             {
-                                "type": "postback",
-                                "title": "Mua",
-                                "payload": "BUY_PRODUCT",
+                                "type": "weburl",
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "title": "Mua sản phẩm",
+                                "webview_height_ratio": "tall",
+                                "messenger_extensions": true
                             },
                         ],
                     },
@@ -352,9 +353,11 @@ let getSetListTemplate = () => {
                                 "payload": "PRODUCT_DETAIL",
                             },
                             {
-                                "type": "postback",
-                                "title": "Mua",
-                                "payload": "BUY_PRODUCT",
+                                "type": "weburl",
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "title": "Mua sản phẩm",
+                                "webview_height_ratio": "tall",
+                                "messenger_extensions": true
                             },
                         ],
                     },
@@ -369,9 +372,11 @@ let getSetListTemplate = () => {
                                 "payload": "PRODUCT_DETAIL",
                             },
                             {
-                                "type": "postback",
-                                "title": "Mua",
-                                "payload": "BUY_PRODUCT",
+                                "type": "weburl",
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "title": "Mua sản phẩm",
+                                "webview_height_ratio": "tall",
+                                "messenger_extensions": true
                             },
                         ],
                     },
@@ -537,7 +542,7 @@ let getButtonTemplate = () => {
             "type": "template",
             "payload": {
                 "template_type": "button",
-                "text": "What do you want to do next?",
+                "text": "Size shop < 58kg nha bạn iu",
                 "buttons": [
                     {
                         "type": "postback",
@@ -545,10 +550,12 @@ let getButtonTemplate = () => {
                         "payload": "LIST_PRODUCT",
                     },
                     {
-                        "type": "postback",
-                        "title": "Mua",
-                        "payload": "BUY_PRODUCT",
-                    }
+                        "type": "weburl",
+                        "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                        "title": "Mua sản phẩm",
+                        "webview_height_ratio": "tall",
+                        "messenger_extensions": true
+                    },
                 ]
             }
         }
