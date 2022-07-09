@@ -145,7 +145,6 @@ let getStartedTemplate = () => {
                         {
                             "type": "postback",
                             "title": "SHOPEE",
-                            "url": "https://shopee.vn/mollieshop2501",
                             "payload": "LINK_SHOPEE",
                         }
                     ],
