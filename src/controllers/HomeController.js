@@ -174,7 +174,10 @@ let setupPersistentMenu = async (req, res) => {
 
 
 let handleOrder = (req, res) => {
-    return res.render('order.ejs');
+
+    console.log('query', req.query.senderId)
+
+    return res.status(200).render('order.ejs');
 }
 
 let handlePostOrder = async (req, res) => {
