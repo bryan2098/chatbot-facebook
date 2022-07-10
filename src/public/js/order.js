@@ -5,6 +5,9 @@ function validateInputFields() {
     let email = $("#email");
     let phoneNumber = $("#phoneNumber");
 
+    console.log('email', email);
+    console.log('phoneNumber', phoneNumber);
+
     if (!email.val().match(EMAIL_REG)) {
         email.addClass("is-invalid");
         return true;
