@@ -27,17 +27,7 @@ window.extAsyncInit = function () {
 
 //validate inputs
 function validateInputFields() {
-    const EMAIL_REG = /[a-zA-Z][a-zA-Z0-9_\.]{1,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}/g;
-
-    let email = $("#email");
     let phoneNumber = $("#phoneNumber");
-
-    if (!email.val().match(EMAIL_REG)) {
-        email.addClass("is-invalid");
-        return true;
-    } else {
-        email.removeClass("is-invalid");
-    }
 
     if (phoneNumber.val() === "") {
         phoneNumber.addClass("is-invalid");
@@ -58,7 +48,7 @@ function handleClickButtonReserveTable() {
         let data = {
             psid: $("#psid").val(),
             customerName: $("#customerName").val(),
-            email: $("#email").val(),
+            address: $("#address").val(),
             phoneNumber: $("#phoneNumber").val()
         };
 
@@ -73,7 +63,7 @@ function handleClickButtonReserveTable() {
 
             //send data to node.js server 
             $.ajax({
-                url: `${window.location.origin}/reserve-table-ajax`,
+                url: `${window.location.origin}/order-ajax`,
                 method: "POST",
                 data: data,
                 success: function (data) {
