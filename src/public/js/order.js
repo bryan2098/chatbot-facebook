@@ -40,12 +40,11 @@ function validateInputFields() {
 
 
 function handleClickButtonOrder() {
-    console.log('call')
     $("#btnOrder").on("click", function (e) {
         let check = validateInputFields(); //return true or false
 
         let data = {
-            psid: $("#psid").val(),
+            psid: $("#psid").val() || '',
             customerName: $("#customerName").val(),
             address: $("#address").val(),
             phoneNumber: $("#phoneNumber").val()
@@ -61,14 +60,16 @@ function handleClickButtonOrder() {
             });
 
             //send data to node.js server 
+            let url = `${window.location.origin}/order-ajax`;
+
             $.ajax({
-                url: `${window.location.origin}/order-ajax`,
+                url: url,
                 method: "POST",
                 contentType: "application/json",
                 dataType: "json",
-                data: data,
-                success: function (data) {
-                    console.log(data);
+                data: JSON.stringify(data),
+                success: function (res) {
+                    console.log('success', res);
                 },
                 error: function (error) {
                     console.log(error);
