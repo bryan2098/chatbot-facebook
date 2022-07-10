@@ -1,29 +1,3 @@
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'Messenger'));
-
-window.extAsyncInit = function () {
-    // the Messenger Extensions JS SDK is done loading 
-
-    MessengerExtensions.getContext('1097565404183780',
-        function success(thread_context) {
-            // success
-            //set psid to input
-            $("#psid").val(thread_context.psid);
-            handleClickButtonReserveTable();
-            console.log('ok');
-        },
-        function error(err) {
-            // error
-            console.log('Lỗi bot', err);
-        }
-    );
-};
-
 //validate inputs
 function validateInputFields() {
     const EMAIL_REG = /[a-zA-Z][a-zA-Z0-9_\.]{1,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}/g;
@@ -71,7 +45,7 @@ function handleClickButtonReserveTable() {
 
             //send data to node.js server 
             $.ajax({
-                url: `${window.location.origin}/reserve-table-ajax`,
+                url: `${window.location.origin}/order-ajax`,
                 method: "POST",
                 data: data,
                 success: function (data) {
