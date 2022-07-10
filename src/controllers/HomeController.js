@@ -200,7 +200,8 @@ let handlePostOrder = async (req, res) => {
         await chatbotService.callSendAPI(req.body.psid, response);
 
         return res.status(200).json({
-            message: 'ok'
+            message: 'ok',
+            data: response
         })
 
     } catch (error) {
