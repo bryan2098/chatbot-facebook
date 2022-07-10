@@ -197,6 +197,8 @@ let handlePostOrder = async (req, res) => {
         \n Số điện thoại: ${req.body.phoneNumber}
         `};
 
+        console.log(response);
+
         await chatbotService.callSendAPI(req.body.psid, response);
 
         return res.status(200).json({
