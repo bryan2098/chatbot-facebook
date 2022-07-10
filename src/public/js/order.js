@@ -12,16 +12,11 @@ window.extAsyncInit = function () {
     // 110952234978460
     MessengerExtensions.getContext('1097565404183780',
         function success(thread_context) {
-            console.log('ok', thread_context)
-            // success
             //set psid to input
             $("#psid").val(thread_context.psid);
             handleClickButtonReserveTable();
         },
         function error(err) {
-            // error
-            console.log('Lỗi bot', err);
-
             // run fallback, get userId from url
             $("#psid").val(senderId);
             handleClickButtonReserveTable();
@@ -46,7 +41,6 @@ function validateInputFields() {
 
 function handleClickButtonReserveTable() {
     $("#btnOrder").on("click", function (e) {
-        console.log('call 123');
         let check = validateInputFields(); //return true or false
 
         let data = {
@@ -64,6 +58,8 @@ function handleClickButtonReserveTable() {
                 // an error occurred
                 console.log(err);
             });
+
+            console.log('url', `${window.location.origin}/order-ajax`);
 
             //send data to node.js server 
             $.ajax({
