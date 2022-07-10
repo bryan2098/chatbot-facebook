@@ -15,6 +15,7 @@ window.extAsyncInit = function () {
             //set psid to input
             $("#psid").val(thread_context.psid);
             handleClickButtonReserveTable();
+            console.log('ok');
         },
         function error(err) {
             // error
