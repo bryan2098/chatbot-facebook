@@ -595,5 +595,6 @@ module.exports = {
     handleMessage: handleMessage,
     handleSendSetList: handleSendSetList,
     handleSendDressList: handleSendDressList,
-    handleSendSkirtList: handleSendSkirtList
+    handleSendSkirtList: handleSendSkirtList,
+    callSendAPI: callSendAPI
 }

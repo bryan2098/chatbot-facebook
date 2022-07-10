@@ -12,6 +12,7 @@ let initWebRoutes = (app) => {
     router.get('/webhook', homeController.getWebhook);
 
     router.get('/order', homeController.handleOrder);
+    router.get('/order-ajax', homeController.handlePostOrder);
 
     return app.use('/', router);
 }

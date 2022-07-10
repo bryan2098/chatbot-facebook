@@ -177,6 +177,37 @@ let handleOrder = (req, res) => {
     return res.render('order.ejs');
 }
 
+let handlePostOrder = (req, res) => {
+    try {
+        let customerName = "";
+        if (req.body.customerName === '') {
+            customerName = 'Empty';
+        } else {
+            customerName = req.body.customerName;
+        }
+
+        let response = {
+            "text": `--- Info about order ---
+        \n Họ và tên: ${customerName}
+        \n Địa chỉ: ${req.body.address}
+        \n Số điện thoại: ${req.body.phoneNumber}
+        `};
+
+        await chatbotService.callSendAPI(req.body.psid, response);
+
+        return res.status(200).json({
+            message: 'ok'
+        })
+
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            message: 'Server error'
+        })
+    }
+}
+
 
 
 module.exports = {
@@ -185,5 +216,6 @@ module.exports = {
     getWebhook: getWebhook,
     setupProfile: setupProfile,
     setupPersistentMenu: setupPersistentMenu,
-    handleOrder: handleOrder
+    handleOrder: handleOrder,
+    handlePostOrder: handlePostOrder
 }
