@@ -177,7 +177,7 @@ let handleOrder = (req, res) => {
     return res.render('order.ejs');
 }
 
-let handlePostOrder = (req, res) => {
+let handlePostOrder = async (req, res) => {
     try {
         let customerName = "";
         if (req.body.customerName === '') {
