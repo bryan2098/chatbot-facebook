@@ -12,11 +12,11 @@ window.extAsyncInit = function () {
     // 110952234978460
     MessengerExtensions.getContext('1097565404183780',
         function success(thread_context) {
+            console.log('ok')
             // success
             //set psid to input
             $("#psid").val(thread_context.psid);
             handleClickButtonReserveTable();
-            console.log('ok')
         },
         function error(err) {
             // error
@@ -52,6 +52,7 @@ function validateInputFields() {
 
 function handleClickButtonReserveTable() {
     $("#btnReserveTable").on("click", function (e) {
+        console.log('call 123');
         let check = validateInputFields(); //return true or false
 
         let data = {
