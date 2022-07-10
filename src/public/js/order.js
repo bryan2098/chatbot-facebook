@@ -14,12 +14,12 @@ window.extAsyncInit = function () {
         function success(thread_context) {
             //set psid to input
             $("#psid").val(thread_context.psid);
-            handleClickButtonReserveTable();
+            handleClickButtonOrder();
         },
         function error(err) {
             // run fallback, get userId from url
             $("#psid").val(senderId);
-            handleClickButtonReserveTable();
+            handleClickButtonOrder();
         }
     );
 };
@@ -39,7 +39,8 @@ function validateInputFields() {
 }
 
 
-function handleClickButtonReserveTable() {
+function handleClickButtonOrder() {
+    console.log('call')
     $("#btnOrder").on("click", function (e) {
         let check = validateInputFields(); //return true or false
 
@@ -59,12 +60,12 @@ function handleClickButtonReserveTable() {
                 console.log(err);
             });
 
-            console.log('url', `${window.location.origin}/order-ajax`);
-
             //send data to node.js server 
             $.ajax({
                 url: `${window.location.origin}/order-ajax`,
                 method: "POST",
+                contentType: "application/json",
+                dataType: "json",
                 data: data,
                 success: function (data) {
                     console.log(data);
