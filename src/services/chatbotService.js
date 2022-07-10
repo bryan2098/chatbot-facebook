@@ -157,7 +157,7 @@ let getStartedTemplate = () => {
 }
 
 
-let getListProductTemplate = () => {
+let getListProductTemplate = (sender_psid) => {
     let response = {
         "attachment": {
             "type": "template",
@@ -193,7 +193,7 @@ let getListProductTemplate = () => {
                         "buttons": [
                             {
                                 "type": "web_url",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
                                 "title": "Mua sản phẩm",
                                 "webview_height_ratio": "tall",
                                 "messenger_extensions": true
@@ -226,7 +226,7 @@ let handleSendListProduct = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getListProductTemplate();
+            let response = getListProductTemplate(sender_psid);
             await callSendAPI(sender_psid, response);
 
             resolve('done');
@@ -315,7 +315,7 @@ function handleMessage(sender_psid, received_message) {
 
 
 
-let getSetListTemplate = () => {
+let getSetListTemplate = (sender_psid) => {
     let response = {
         "attachment": {
             "type": "template",
@@ -334,7 +334,7 @@ let getSetListTemplate = () => {
                             },
                             {
                                 "type": "weburl",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
                                 "title": "Mua sản phẩm",
                                 "webview_height_ratio": "tall",
                                 "messenger_extensions": true
@@ -353,7 +353,7 @@ let getSetListTemplate = () => {
                             },
                             {
                                 "type": "weburl",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
                                 "title": "Mua sản phẩm",
                                 "webview_height_ratio": "tall",
                                 "messenger_extensions": true
@@ -372,7 +372,7 @@ let getSetListTemplate = () => {
                             },
                             {
                                 "type": "weburl",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
                                 "title": "Mua sản phẩm",
                                 "webview_height_ratio": "tall",
                                 "messenger_extensions": true
@@ -405,7 +405,7 @@ let handleSendSetList = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getSetListTemplate();
+            let response = getSetListTemplate(sender_psid);
             await callSendAPI(sender_psid, response);
 
 
@@ -421,7 +421,7 @@ let handleSendDressList = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getSetListTemplate();
+            let response = getSetListTemplate(sender_psid);
             await callSendAPI(sender_psid, response);
 
 
@@ -437,7 +437,7 @@ let handleSendSkirtList = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getSetListTemplate();
+            let response = getSetListTemplate(sender_psid);
             await callSendAPI(sender_psid, response);
 
 
@@ -535,7 +535,7 @@ let getImageTemplate = () => {
 }
 
 
-let getButtonTemplate = () => {
+let getButtonTemplate = (sender_psid) => {
     let response = {
         "attachment": {
             "type": "template",
@@ -550,7 +550,7 @@ let getButtonTemplate = () => {
                     },
                     {
                         "type": "weburl",
-                        "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                        "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
                         "title": "Mua sản phẩm",
                         "webview_height_ratio": "tall",
                         "messenger_extensions": true
@@ -570,7 +570,7 @@ let handleShowImage = (sender_psid) => {
             // send an image 
             let responseImage = getImageTemplate();
             // send a button templates
-            let responseBtn = getButtonTemplate();
+            let responseBtn = getButtonTemplate(sender_psid);
 
 
 
