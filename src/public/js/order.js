@@ -21,6 +21,10 @@ window.extAsyncInit = function () {
         function error(err) {
             // error
             console.log('Lỗi bot', err);
+
+            // run fallback, get userId from url
+            $("#psid").val(senderId);
+            handleClickButtonReserveTable();
         }
     );
 };
