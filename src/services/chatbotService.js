@@ -596,5 +596,6 @@ module.exports = {
     handleSendSetList: handleSendSetList,
     handleSendDressList: handleSendDressList,
     handleSendSkirtList: handleSendSkirtList,
-    callSendAPI: callSendAPI
+    callSendAPI: callSendAPI,
+    getUserName: getUserName
 }
