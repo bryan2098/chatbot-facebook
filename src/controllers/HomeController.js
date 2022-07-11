@@ -221,7 +221,7 @@ let getGoogleSheet = async (name, address, phone) => {
             {
                 "Tên": name,
                 "Địa chỉ": address,
-                "Số điện thoại": phone,
+                "Số điện thoại": `'${phone}`,
             });
     }
     catch (e) {
