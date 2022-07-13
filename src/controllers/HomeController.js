@@ -182,7 +182,8 @@ let handlePostOrder = async (req, res) => {
         \n Xin cảm ơn quý khác đã đặt sản phẩm
         `};
 
-        await getGoogleSheet(customerName, address, phoneNumber);
+        // ghi file excel
+        await writeDataToGoogleSheet(customerName, address, phoneNumber);
 
         await chatbotService.callSendAPI(req.body.psid, response);
 
@@ -201,7 +202,7 @@ let handlePostOrder = async (req, res) => {
 
 
 
-let getGoogleSheet = async (name, address, phone) => {
+let writeDataToGoogleSheet = async (name, address, phone) => {
     try {
         // Initialize the sheet - doc ID is the long id in the sheets URL
         const doc = new GoogleSpreadsheet(SHEET_ID);

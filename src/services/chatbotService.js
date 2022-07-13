@@ -118,6 +118,10 @@ let handleGetStarted = (sender_psid) => {
             await callSendAPI(sender_psid, responseGenericMessage);
 
 
+            let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
+            await callSendAPI(sender_psid, responseQuickReplyTemplate);
+
+
             resolve('done');
         } catch (error) {
             reject(error)
@@ -587,6 +591,36 @@ let handleShowImage = (sender_psid) => {
     })
 }
 
+let getStartedQuickReplyTemplate = () => {
+    let response = {
+        "text": "Dưới đây là các sản phẩm nổi bật của Shop",
+        "quick_replies": [
+            {
+                "content_type": "text",
+                "title": "Sản phẩm nổi bật",
+                "payload": "OUTSTANDING",
+            },
+            {
+                "content_type": "text",
+                "title": "Sản phẩm bán chạy",
+                "payload": "BEST_SELLER",
+            },
+            {
+                "content_type": "text",
+                "title": "Mua sản phẩm",
+                "payload": "BUY_PRODUCT",
+            },
+            {
+                "content_type": "text",
+                "title": "Hướng dẫn sử dụng",
+                "payload": "GUIDE",
+            }
+        ]
+    };
+
+    return response;
+}
+
 
 module.exports = {
     handleGetStarted: handleGetStarted,
@@ -597,5 +631,6 @@ module.exports = {
     handleSendDressList: handleSendDressList,
     handleSendSkirtList: handleSendSkirtList,
     callSendAPI: callSendAPI,
-    getUserName: getUserName
+    getUserName: getUserName,
+    getStartedQuickReplyTemplate: getStartedQuickReplyTemplate
 }
