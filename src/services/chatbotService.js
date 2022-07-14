@@ -306,8 +306,23 @@ async function handlePostback(sender_psid, received_postback) {
 
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+async function handleMessage(sender_psid, received_message) {
     let response;
+
+    // check message for with replies
+    if (received_message.quick_reply && received_message.quick_reply.payload) {
+
+        switch (received_message.quick_reply.payload) {
+            case 'LIST_PRODUCT':
+                await handleSendListProduct(sender_psid);
+                break;
+
+            default:
+                break;
+        }
+
+        return;
+    }
 
     // Check if the message contains text
     if (received_message.text) {
@@ -604,7 +619,7 @@ let getStartedQuickReplyTemplate = () => {
             {
                 "content_type": "text",
                 "title": "Sản phẩm nổi bật",
-                "payload": "OUTSTANDING",
+                "payload": "LIST_PRODUCT",
             },
             {
                 "content_type": "text",
