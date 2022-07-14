@@ -120,8 +120,8 @@ let handleGetStarted = (sender_psid) => {
 
 
             // send generic message
-            // let responseGenericMessage = getStartedTemplate();
-            // await callSendAPI(sender_psid, responseGenericMessage);
+            let responseGenericMessage = getStartedTemplate();
+            await callSendAPI(sender_psid, responseGenericMessage);
 
 
             let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
