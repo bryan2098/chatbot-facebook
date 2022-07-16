@@ -29,6 +29,7 @@ let callSendAPI = async (sender_psid, response) => {
                 "method": "POST",
                 "json": request_body
             }, (err, res, body) => {
+                console.log('body', body);
                 if (!err) {
                     resolve('message sent!')
                 } else {
@@ -645,9 +646,14 @@ let handleGuideToUseBot = (sender_psid) => {
         try {
 
             let username = await getUserName(sender_psid);
-            let response = {
+            let responseText = {
                 text: `Xin chào bạn ${username}, mình là chat bot Mollie. \n Để biết cách sử dụng, bạn vui lòng xem hết video bên dưới nhé 😉`
             };
+
+            let responseMediaTemplate = getBotMediaTemplate();
+
+            await callSendAPI(sender_psid, responseText);
+            await callSendAPI(sender_psid, responseMediaTemplate);
 
             resolve('done');
         } catch (error) {
