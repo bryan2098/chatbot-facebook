@@ -317,6 +317,10 @@ async function handleMessage(sender_psid, received_message) {
                 await handleSendListProduct(sender_psid);
                 break;
 
+            case 'GUIDE_TO_USE':
+                await handleGuideToUseBot(sender_psid);
+                break;
+
             default:
                 break;
         }
@@ -597,8 +601,6 @@ let handleShowImage = (sender_psid) => {
             // send a button templates
             let responseBtn = getButtonTemplate(sender_psid);
 
-
-
             // send generic message
 
             await callSendAPI(sender_psid, responseImage);
@@ -628,15 +630,59 @@ let getStartedQuickReplyTemplate = () => {
             },
             {
                 "content_type": "text",
-                "title": "Mua sản phẩm",
-                "payload": "BUY_PRODUCT",
-            },
-            {
-                "content_type": "text",
                 "title": "Hướng dẫn sử dụng",
-                "payload": "GUIDE",
+                "payload": "GUIDE_TO_USE",
             }
         ]
+    };
+
+    return response;
+}
+
+
+let handleGuideToUseBot = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            let username = await getUserName(sender_psid);
+            let response = {
+                text: `Xin chào bạn ${username}, mình là chat bot Mollie. \n Để biết cách sử dụng, bạn vui lòng xem hết video bên dưới nhé 😉`
+            };
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+let getBotMediaTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "media",
+                "elements": [
+                    {
+                        "media_type": "<image|video>",
+                        "attachment_id": "765420714370507",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Danh sách sản phẩm nổi bật",
+                                "payload": "PRODUCT_LIST",
+                            },
+                            {
+                                "type": "weburl",
+                                "url": `https://shopee.vn/mollieshop2501`,
+                                "title": "Shopee",
+                                "webview_height_ratio": "full",
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
     };
 
     return response;
