@@ -671,7 +671,8 @@ let getBotMediaTemplate = () => {
                 "elements": [
                     {
                         "media_type": "<image|video>",
-                        "attachment_id": "765420714370507",
+                        // "attachment_id": "765420714370507",
+                        "url": "https://business.facebook.com/hoidanITEricRestaurant/videos/765420714370507",
                         "buttons": [
                             {
                                 "type": "postback",
