@@ -341,8 +341,8 @@ let getStartedQuickReplyTemplate = () => {
     let response = {
         "text": "Dưới đây là các gợi ý của Mollie. Bạn yêu tham khảo nhé.",
         "quick_replies": [
-            COFG.BUTTONS.PRODUCT_LIST,
-            COFG.BUTTONS.BEST_SELLER,
+            COFG.BUTTONS.PRODUCT_LIST_QUICK_REPLY,
+            COFG.BUTTONS.BEST_SELLER_QUICK_REPLY,
             COFG.BUTTONS.GUIDE_TO_USE
         ]
     };

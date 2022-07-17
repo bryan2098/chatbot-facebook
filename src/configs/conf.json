@@ -55,6 +55,16 @@
             "content_type": "text",
             "title": "Hướng dẫn sử dụng",
             "payload": "GUIDE_TO_USE"
+        },
+        "PRODUCT_LIST_QUICK_REPLY": {
+            "content_type": "postback",
+            "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
+            "payload": "LIST_PRODUCT"
+        },
+        "BEST_SELLER_QUICK_REPLY": {
+            "type": "postback",
+            "title": "CÁC SẢN PHẨM BÁN CHẠY",
+            "payload": "BEST_SELLER"
         }
     }
 }
