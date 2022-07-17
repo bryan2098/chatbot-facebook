@@ -339,6 +339,7 @@ let handleShowImage = (sender_psid) => {
 
 let getStartedQuickReplyTemplate = () => {
     let response = {
+        "text": "Dưới đây là các gợi ý của Mollie. Bạn yêu tham khảo nhé.",
         "quick_replies": [
             COFG.BUTTONS.PRODUCT_LIST,
             COFG.BUTTONS.BEST_SELLER,
