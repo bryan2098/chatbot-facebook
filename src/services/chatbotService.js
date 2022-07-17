@@ -27,9 +27,7 @@ let getStartedTemplate = () => {
         }
     ];
 
-    let res = common.getTemplate("generic", elements);
-
-    return res;
+    return common.getTemplate(elements, "generic");
 }
 
 
@@ -85,7 +83,7 @@ let getListProductTemplate = (sender_psid) => {
         }
     ];
 
-    return common.getTemplate("generic", elements);
+    return common.getTemplate(elements, "generic");
 }
 
 
@@ -119,7 +117,7 @@ let getSetListTemplate = () => {
     ];
 
 
-    return common.getTemplate("generic", elements);
+    return common.getTemplate(elements, "generic");
 }
 
 
@@ -161,7 +159,7 @@ let getProductDetailTemplate = () => {
         }
     ];
 
-    return common.getTemplate("generic", elements);
+    return common.getTemplate(elements, "generic");
 }
 
 
@@ -188,7 +186,7 @@ let getBotMediaTemplate = () => {
         }
     ];
 
-    return common.getTemplate('media', elements);
+    return common.getTemplate(elements, 'media');
 }
 
 let getStartedQuickReplyTemplate = () => {
