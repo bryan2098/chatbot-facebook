@@ -1,5 +1,5 @@
 require('dotenv').config();
-import request from "request";
+const request = require("request");
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
@@ -103,7 +103,23 @@ let getUserName = (sender_psid) => {
     })
 }
 
+
+let getTemplate = (elements, type) => {
+    let payload = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": type,
+                "elements": elements
+            }
+        }
+    }
+
+    return payload;
+}
+
 module.exports = {
     callSendAPI: callSendAPI,
-    getUserName: getUserName
+    getUserName: getUserName,
+    getTemplate: getTemplate
 }
