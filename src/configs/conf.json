@@ -3,7 +3,7 @@
     "BUTTONS": {
         "PRODUCT_LIST": {
             "type": "postback",
-            "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
+            "title": "Sản phẩm nổi bật",
             "payload": "LIST_PRODUCT"
         },
         "SHOPEE": {
@@ -28,12 +28,12 @@
         },
         "DRESS_LIST": {
             "type": "postback",
-            "title": "ĐẦM",
+            "title": "Đầm",
             "payload": "DRESS_LIST"
         },
         "SKIRT_LIST": {
             "type": "postback",
-            "title": "VÁY",
+            "title": "Váy",
             "payload": "SKIRT_LIST"
         },
         "JUMPSUIT_LIST": {
@@ -43,7 +43,7 @@
         },
         "BEST_SELLER": {
             "type": "postback",
-            "title": "CÁC SẢN PHẨM BÁN CHẠY",
+            "title": "Sản phẩm bán chạy",
             "payload": "BEST_SELLER"
         },
         "PRODUCT_DETAIL": {

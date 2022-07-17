@@ -1,13 +1,12 @@
 require('dotenv').config();
 import request from "request";
 
-const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const common = require('../script/common');
 
 const IMAGES = [
     'https://res.cloudinary.com/dvweth7yl/image/upload/v1656778684/product/z3533592465888_34e9848417e25ad68aea56a81c56d115.jpg',
 ]
 
-const URL_MESSAGES = "https://graph.facebook.com/v14.0/me/messages";
 const COFG = require('../configs/conf.json');
 const DUMMY = require('../configs/dummy');
 
@@ -19,41 +18,14 @@ let getProductDetailTemplate = () => {
             "payload": {
                 "template_type": "generic",
                 "elements": [
-                    DUMMY[0],
-                    {
-                        "title": "Quay trở lại",
-                        "subtitle": "Quay trở lại danh sách sản phẩm",
-                        "image_url": IMAGES[0],
-                        "buttons": [
-                            COFG.BUTTONS.BACK_TO_LIST
-                        ],
-                    }
+                    DUMMY.dummyProduct[0],
+                    DUMMY.dummyBackToList
                 ]
             }
         }
     }
 
     return response;
-}
-
-
-
-let getUserName = (sender_psid) => {
-    return new Promise((resolve, reject) => {
-        request({
-            "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`,
-            "qs": { "access_token": PAGE_ACCESS_TOKEN },
-            "method": "GET",
-        }, (err, res, body) => {
-            if (!err) {
-                let response = JSON.parse(body);
-                let username = `${response.last_name} ${response.first_name}`;
-                resolve(username);
-            } else {
-                console.error("Unable to send message:" + err);
-            }
-        });
-    })
 }
 
 
@@ -102,13 +74,7 @@ let getListProductTemplate = (sender_psid) => {
                         "subtitle": "Tất cả các ngày trong tuần",
                         "image_url": IMAGES[0],
                         "buttons": [
-                            {
-                                "type": "web_url",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
-                                "title": "Mua sản phẩm",
-                                "webview_height_ratio": "tall",
-                                "messenger_extensions": true
-                            },
+                            common.buyProduct(sender_psid)
                         ],
                     },
                     {
@@ -170,27 +136,10 @@ let getSetListTemplate = (sender_psid) => {
                         "image_url": "https://res.cloudinary.com/dvweth7yl/image/upload/v1656778684/product/z3533592465888_34e9848417e25ad68aea56a81c56d115.jpg",
                         "buttons": [
                             COFG.BUTTONS.PRODUCT_DETAIL,
-                            {
-                                "type": "weburl",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
-                                "title": "Mua sản phẩm",
-                                "webview_height_ratio": "tall",
-                                "messenger_extensions": true
-                            },
+                            common.buyProduct(sender_psid)
                         ],
                     },
-                    {
-                        "title": "Quay trở lại",
-                        "subtitle": "Quay trở lại danh sách sản phẩm",
-                        "image_url": IMAGES[0],
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Quay trở lại",
-                                "payload": "BACK_TO_LIST",
-                            },
-                        ],
-                    }
+                    DUMMY.dummyBackToList
                 ]
             }
         }
@@ -223,13 +172,7 @@ let getButtonTemplate = (sender_psid) => {
                 "text": "Size shop < 58kg nha bạn iu",
                 "buttons": [
                     COFG.BUTTONS.PRODUCT_LIST,
-                    {
-                        "type": "weburl",
-                        "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
-                        "title": "Mua sản phẩm",
-                        "webview_height_ratio": "tall",
-                        "messenger_extensions": true
-                    },
+                    common.buyProduct(sender_psid)
                 ]
             }
         }
@@ -238,6 +181,18 @@ let getButtonTemplate = (sender_psid) => {
     return response;
 }
 
+let getStartedQuickReplyTemplate = () => {
+    let response = {
+        "text": "Dưới đây là các gợi ý của Mollie. Bạn yêu tham khảo nhé.",
+        "quick_replies": [
+            COFG.BUTTONS.PRODUCT_LIST_QUICK_REPLY,
+            COFG.BUTTONS.BEST_SELLER_QUICK_REPLY,
+            COFG.BUTTONS.GUIDE_TO_USE
+        ]
+    };
+
+    return response;
+}
 
 
 let handleSendSetList = (sender_psid) => {
@@ -246,8 +201,7 @@ let handleSendSetList = (sender_psid) => {
 
             // send generic message
             let response = getSetListTemplate(sender_psid);
-            await callSendAPI(sender_psid, response);
-
+            await common.callsendAPI(sender_psid, response);
 
             resolve('done');
         } catch (error) {
@@ -262,7 +216,7 @@ let handleSendDressList = (sender_psid) => {
 
             // send generic message
             let response = getSetListTemplate(sender_psid);
-            await callSendAPI(sender_psid, response);
+            await common.callsendAPI(sender_psid, response);
 
 
             resolve('done');
@@ -278,7 +232,7 @@ let handleSendSkirtList = (sender_psid) => {
 
             // send generic message
             let response = getSetListTemplate(sender_psid);
-            await callSendAPI(sender_psid, response);
+            await common.callsendAPI(sender_psid, response);
 
 
             resolve('done');
@@ -288,11 +242,11 @@ let handleSendSkirtList = (sender_psid) => {
     })
 }
 
+
+
 let handleBackToList = async (sender_psid) => {
     await handleSendListProduct(sender_psid);
 }
-
-
 
 
 let handleDetailProduct = (sender_psid) => {
@@ -301,7 +255,7 @@ let handleDetailProduct = (sender_psid) => {
 
             // send generic message
             let response = getProductDetailTemplate();
-            await callSendAPI(sender_psid, response);
+            await common.callsendAPI(sender_psid, response);
 
 
             resolve('done');
@@ -325,8 +279,8 @@ let handleShowImage = (sender_psid) => {
 
             // send generic message
 
-            await callSendAPI(sender_psid, responseImage);
-            await callSendAPI(sender_psid, responseBtn);
+            await common.callsendAPI(sender_psid, responseImage);
+            await common.callsendAPI(sender_psid, responseBtn);
 
 
             resolve('done');
@@ -336,33 +290,20 @@ let handleShowImage = (sender_psid) => {
     })
 }
 
-let getStartedQuickReplyTemplate = () => {
-    let response = {
-        "text": "Dưới đây là các gợi ý của Mollie. Bạn yêu tham khảo nhé.",
-        "quick_replies": [
-            COFG.BUTTONS.PRODUCT_LIST_QUICK_REPLY,
-            COFG.BUTTONS.BEST_SELLER_QUICK_REPLY,
-            COFG.BUTTONS.GUIDE_TO_USE
-        ]
-    };
-
-    return response;
-}
-
 
 let handleGuideToUseBot = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            let username = await getUserName(sender_psid);
+            let username = await common.getUserName(sender_psid);
             let responseText = {
                 text: `Xin chào bạn ${username}, mình là chat bot Mollie. \n Để biết cách sử dụng, bạn vui lòng xem hết video bên dưới nhé 😉`
             };
 
             let responseMediaTemplate = getBotMediaTemplate();
 
-            await callSendAPI(sender_psid, responseText);
-            await callSendAPI(sender_psid, responseMediaTemplate);
+            await common.callsendAPI(sender_psid, responseText);
+            await common.callsendAPI(sender_psid, responseMediaTemplate);
 
             resolve('done');
         } catch (error) {
@@ -374,20 +315,20 @@ let handleGuideToUseBot = (sender_psid) => {
 let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let username = await getUserName(sender_psid);
+            let username = await common.getUserName(sender_psid);
 
             // send text message
             let responseText = { 'text': `Xin chào mừng ${username} đến với Mollie Shop` };
-            await callSendAPI(sender_psid, responseText);
+            await common.callsendAPI(sender_psid, responseText);
 
 
             // send generic message
             let responseGenericMessage = getStartedTemplate();
-            await callSendAPI(sender_psid, responseGenericMessage);
+            await common.callsendAPI(sender_psid, responseGenericMessage);
 
 
             let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
-            await callSendAPI(sender_psid, responseQuickReplyTemplate);
+            await common.callsendAPI(sender_psid, responseQuickReplyTemplate);
 
 
             resolve('done');
@@ -404,7 +345,7 @@ let handleSendListProduct = (sender_psid) => {
 
             // send generic message
             let response = getListProductTemplate(sender_psid);
-            await callSendAPI(sender_psid, response);
+            await common.callsendAPI(sender_psid, response);
 
             resolve('done');
         } catch (error) {
@@ -415,8 +356,6 @@ let handleSendListProduct = (sender_psid) => {
 
 // Handles messaging_postbacks events
 async function handlePostback(sender_psid, received_postback) {
-    let response;
-
     let payload = received_postback.payload;
 
     switch (payload) {
@@ -453,9 +392,6 @@ async function handlePostback(sender_psid, received_postback) {
             await handleBackToList(sender_psid);
             break;
     }
-
-
-    // callSendAPI(sender_psid, response);
 }
 
 
@@ -492,90 +428,7 @@ async function handleMessage(sender_psid, received_message) {
     }
 
     // Sends the response message
-    callSendAPI(sender_psid, response);
-}
-
-
-let callSendAPI = async (sender_psid, response) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            // Construct the message body
-            let request_body = {
-                "recipient": {
-                    "id": sender_psid
-                },
-                "message": response
-            }
-
-            await sendMarkReadMessage(sender_psid);
-            await sendTypingOn(sender_psid);
-
-            // Send the HTTP request to the Messenger Platform
-            request({
-                "uri": URL_MESSAGES,
-                "qs": { "access_token": PAGE_ACCESS_TOKEN },
-                "method": "POST",
-                "json": request_body
-            }, (err, res, body) => {
-                console.log('body', body);
-                if (!err) {
-                    resolve('message sent!')
-                } else {
-                    reject("Unable to send message:" + err);
-                }
-            });
-        } catch (error) {
-            reject(error);
-        }
-    })
-}
-
-let sendTypingOn = (sender_psid) => {
-    // Construct the message body
-    let request_body = {
-        "recipient": {
-            "id": sender_psid
-        },
-        "sender_action": "typing_on"
-    }
-
-    // Send the HTTP request to the Messenger Platform
-    request({
-        "uri": URL_MESSAGES,
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": request_body
-    }, (err, res, body) => {
-        if (!err) {
-            console.log('sendTypingOn sent!')
-        } else {
-            console.error("Unable to send message:" + err);
-        }
-    });
-}
-
-let sendMarkReadMessage = (sender_psid) => {
-    // Construct the message body
-    let request_body = {
-        "recipient": {
-            "id": sender_psid
-        },
-        "sender_action": "mark_seen"
-    }
-
-    // Send the HTTP request to the Messenger Platform
-    request({
-        "uri": URL_MESSAGES,
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": request_body
-    }, (err, res, body) => {
-        if (!err) {
-            console.log('sendTypingOn sent!')
-        } else {
-            console.error("Unable to send message:" + err);
-        }
-    });
+    common.callsendAPI(sender_psid, response);
 }
 
 
@@ -587,7 +440,5 @@ module.exports = {
     handleMessage: handleMessage,
     handleSendDressList: handleSendDressList,
     handleSendSkirtList: handleSendSkirtList,
-    callSendAPI: callSendAPI,
-    getUserName: getUserName,
     getStartedQuickReplyTemplate: getStartedQuickReplyTemplate
 }
