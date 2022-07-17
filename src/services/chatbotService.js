@@ -339,23 +339,10 @@ let handleShowImage = (sender_psid) => {
 
 let getStartedQuickReplyTemplate = () => {
     let response = {
-        "text": "Dưới đây là các sản phẩm nổi bật của Shop",
         "quick_replies": [
-            {
-                "content_type": "text",
-                "title": "Sản phẩm nổi bật",
-                "payload": "LIST_PRODUCT",
-            },
-            {
-                "content_type": "text",
-                "title": "Sản phẩm bán chạy",
-                "payload": "BEST_SELLER",
-            },
-            {
-                "content_type": "text",
-                "title": "Hướng dẫn sử dụng",
-                "payload": "GUIDE_TO_USE",
-            }
+            COFG.BUTTONS.PRODUCT_LIST,
+            COFG.BUTTONS.BEST_SELLER,
+            COFG.BUTTONS.GUIDE_TO_USE
         ]
     };
 

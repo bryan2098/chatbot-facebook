@@ -50,6 +50,11 @@
             "type": "postback",
             "title": "Chi Tiết",
             "payload": "PRODUCT_DETAIL"
+        },
+        "GUIDE_TO_USE": {
+            "content_type": "text",
+            "title": "Hướng dẫn sử dụng",
+            "payload": "GUIDE_TO_USE"
         }
     }
 }
