@@ -94,8 +94,7 @@ let getListProductTemplate = (sender_psid) => {
                         "buttons": [
                             COFG.BUTTONS.SET_LIST,
                             COFG.BUTTONS.DRESS_LIST,
-                            COFG.BUTTONS.SKIRT_LIST,
-                            COFG.BUTTONS.JUMPSUIT_LIST
+                            COFG.BUTTONS.SKIRT_LIST
                         ],
                     },
                     {
