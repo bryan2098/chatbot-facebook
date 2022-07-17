@@ -9,6 +9,8 @@ const PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAA
 const CLIENT_EMAIL = process.env.CLIENT_EMAIL;
 const SHEET_ID = process.env.SHEET_ID;
 
+const common = require('../script/common');
+
 
 let getHomePage = (req, res) => {
     return res.render('homepage.ejs');
@@ -185,7 +187,7 @@ let handlePostOrder = async (req, res) => {
         // ghi file excel
         await writeDataToGoogleSheet(customerName, address, phoneNumber);
 
-        await chatbotService.callSendAPI(req.body.psid, response);
+        await common.callSendAPI(req.body.psid, response);
 
         return res.status(200).json({
             message: 'ok',
