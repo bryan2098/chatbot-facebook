@@ -201,7 +201,7 @@ let handleSendSetList = (sender_psid) => {
 
             // send generic message
             let response = getSetListTemplate(sender_psid);
-            await common.callsendAPI(sender_psid, response);
+            await common.callSendAPI(sender_psid, response);
 
             resolve('done');
         } catch (error) {
@@ -216,7 +216,7 @@ let handleSendDressList = (sender_psid) => {
 
             // send generic message
             let response = getSetListTemplate(sender_psid);
-            await common.callsendAPI(sender_psid, response);
+            await common.callSendAPI(sender_psid, response);
 
 
             resolve('done');
@@ -232,7 +232,7 @@ let handleSendSkirtList = (sender_psid) => {
 
             // send generic message
             let response = getSetListTemplate(sender_psid);
-            await common.callsendAPI(sender_psid, response);
+            await common.callSendAPI(sender_psid, response);
 
 
             resolve('done');
@@ -255,7 +255,7 @@ let handleDetailProduct = (sender_psid) => {
 
             // send generic message
             let response = getProductDetailTemplate();
-            await common.callsendAPI(sender_psid, response);
+            await common.callSendAPI(sender_psid, response);
 
 
             resolve('done');
@@ -279,8 +279,8 @@ let handleShowImage = (sender_psid) => {
 
             // send generic message
 
-            await common.callsendAPI(sender_psid, responseImage);
-            await common.callsendAPI(sender_psid, responseBtn);
+            await common.callSendAPI(sender_psid, responseImage);
+            await common.callSendAPI(sender_psid, responseBtn);
 
 
             resolve('done');
@@ -302,8 +302,8 @@ let handleGuideToUseBot = (sender_psid) => {
 
             let responseMediaTemplate = getBotMediaTemplate();
 
-            await common.callsendAPI(sender_psid, responseText);
-            await common.callsendAPI(sender_psid, responseMediaTemplate);
+            await common.callSendAPI(sender_psid, responseText);
+            await common.callSendAPI(sender_psid, responseMediaTemplate);
 
             resolve('done');
         } catch (error) {
@@ -319,16 +319,16 @@ let handleGetStarted = (sender_psid) => {
 
             // send text message
             let responseText = { 'text': `Xin chào mừng ${username} đến với Mollie Shop` };
-            await common.callsendAPI(sender_psid, responseText);
+            await common.callSendAPI(sender_psid, responseText);
 
 
             // send generic message
             let responseGenericMessage = getStartedTemplate();
-            await common.callsendAPI(sender_psid, responseGenericMessage);
+            await common.callSendAPI(sender_psid, responseGenericMessage);
 
 
             let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
-            await common.callsendAPI(sender_psid, responseQuickReplyTemplate);
+            await common.callSendAPI(sender_psid, responseQuickReplyTemplate);
 
 
             resolve('done');
@@ -345,7 +345,7 @@ let handleSendListProduct = (sender_psid) => {
 
             // send generic message
             let response = getListProductTemplate(sender_psid);
-            await common.callsendAPI(sender_psid, response);
+            await common.callSendAPI(sender_psid, response);
 
             resolve('done');
         } catch (error) {
@@ -428,7 +428,7 @@ async function handleMessage(sender_psid, received_message) {
     }
 
     // Sends the response message
-    common.callsendAPI(sender_psid, response);
+    common.callSendAPI(sender_psid, response);
 }
 
 

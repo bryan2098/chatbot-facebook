@@ -5,7 +5,7 @@ const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const URL_MESSAGES = "https://graph.facebook.com/v14.0/me/messages";
 
 
-let callSendAPI = async (sender_psid, response) => {
+const callSendAPI = async (sender_psid, response) => {
     return new Promise(async (resolve, reject) => {
         try {
             // Construct the message body
