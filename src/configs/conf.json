@@ -57,12 +57,12 @@
             "payload": "GUIDE_TO_USE"
         },
         "PRODUCT_LIST_QUICK_REPLY": {
-            "content_type": "postback",
+            "content_type": "text",
             "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
             "payload": "LIST_PRODUCT"
         },
         "BEST_SELLER_QUICK_REPLY": {
-            "type": "postback",
+            "type": "text",
             "title": "CÁC SẢN PHẨM BÁN CHẠY",
             "payload": "BEST_SELLER"
         }
