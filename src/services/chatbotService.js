@@ -125,6 +125,8 @@ let getListProductTemplate = (sender_psid) => {
         }
     }
 
+    console.log('response', response);
+
     return response;
 }
 
