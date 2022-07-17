@@ -236,14 +236,10 @@ let handleGetStarted = (sender_psid) => {
 
             // send generic message
             let templateStarted = getStartedTemplate();
-
-            console.log('\x1b[33m%s\x1b[0m', templateStarted);
-
             await common.callSendAPI(sender_psid, templateStarted);
 
-
-            // let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
-            // await common.callSendAPI(sender_psid, responseQuickReplyTemplate);
+            let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
+            await common.callSendAPI(sender_psid, responseQuickReplyTemplate);
 
 
             resolve('done');
