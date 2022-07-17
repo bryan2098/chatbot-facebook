@@ -168,7 +168,7 @@ let handlePostOrder = async (req, res) => {
     try {
         let customerName = "";
         if (req.body.customerName === '') {
-            customerName = await chatbotService.getUserName(req.body.psid);
+            customerName = await common.getUserName(req.body.psid);
         } else {
             customerName = req.body.customerName;
         }
