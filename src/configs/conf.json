@@ -62,7 +62,7 @@
             "payload": "LIST_PRODUCT"
         },
         "BEST_SELLER_QUICK_REPLY": {
-            "type": "text",
+            "content_type": "text",
             "title": "Sản phẩm bán chạy",
             "payload": "BEST_SELLER"
         }
