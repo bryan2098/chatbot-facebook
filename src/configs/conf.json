@@ -58,12 +58,12 @@
         },
         "PRODUCT_LIST_QUICK_REPLY": {
             "content_type": "text",
-            "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
+            "title": "Sản phẩm nổi bật",
             "payload": "LIST_PRODUCT"
         },
         "BEST_SELLER_QUICK_REPLY": {
             "type": "text",
-            "title": "CÁC SẢN PHẨM BÁN CHẠY",
+            "title": "Sản phẩm bán chạy",
             "payload": "BEST_SELLER"
         }
     }
