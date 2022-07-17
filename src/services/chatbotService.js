@@ -7,7 +7,6 @@ const IMAGES = [
 ]
 
 let getStartedTemplate = () => {
-
     let elements = [
         {
             "title": "Xin chào bạn đến với Mollie Shop",
@@ -228,6 +227,10 @@ let handleGetStarted = (sender_psid) => {
 
             // send generic message
             let responseGenericMessage = getStartedTemplate();
+
+            console.log('responseGenericMessage', responseGenericMessage);
+
+
             await common.callSendAPI(sender_psid, responseGenericMessage);
 
 
