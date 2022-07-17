@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const common = require('../script/common');
 
 const IMAGES = [
@@ -226,16 +225,15 @@ let handleGetStarted = (sender_psid) => {
 
 
             // send generic message
-            let responseGenericMessage = getStartedTemplate();
+            let templateStarted = getStartedTemplate();
 
-            console.log('responseGenericMessage', responseGenericMessage);
+            console.log('\x1b[33m%s\x1b[0m', templateStarted);
+
+            await common.callSendAPI(sender_psid, templateStarted);
 
 
-            await common.callSendAPI(sender_psid, responseGenericMessage);
-
-
-            let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
-            await common.callSendAPI(sender_psid, responseQuickReplyTemplate);
+            // let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
+            // await common.callSendAPI(sender_psid, responseQuickReplyTemplate);
 
 
             resolve('done');
