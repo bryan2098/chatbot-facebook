@@ -362,13 +362,13 @@ let getSetListTemplate = (sender_psid) => {
                                 "title": "Chi Tiết",
                                 "payload": "PRODUCT_DETAIL",
                             },
-                            {
-                                "type": "weburl",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
-                                "title": "Mua sản phẩm",
-                                "webview_height_ratio": "tall",
-                                "messenger_extensions": true
-                            },
+                            // {
+                            //     "type": "weburl",
+                            //     "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
+                            //     "title": "Mua sản phẩm",
+                            //     "webview_height_ratio": "tall",
+                            //     "messenger_extensions": true
+                            // },
                         ],
                     },
                     {
@@ -381,13 +381,13 @@ let getSetListTemplate = (sender_psid) => {
                                 "title": "Chi Tiết",
                                 "payload": "PRODUCT_DETAIL",
                             },
-                            {
-                                "type": "weburl",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
-                                "title": "Mua sản phẩm",
-                                "webview_height_ratio": "tall",
-                                "messenger_extensions": true
-                            },
+                            // {
+                            //     "type": "weburl",
+                            //     "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
+                            //     "title": "Mua sản phẩm",
+                            //     "webview_height_ratio": "tall",
+                            //     "messenger_extensions": true
+                            // },
                         ],
                     },
                     {
@@ -400,13 +400,13 @@ let getSetListTemplate = (sender_psid) => {
                                 "title": "Chi Tiết",
                                 "payload": "PRODUCT_DETAIL",
                             },
-                            {
-                                "type": "weburl",
-                                "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
-                                "title": "Mua sản phẩm",
-                                "webview_height_ratio": "tall",
-                                "messenger_extensions": true
-                            },
+                            // {
+                            //     "type": "weburl",
+                            //     "url": `${process.env.URL_WEB_VIEW_ORDER}?senderId=${sender_psid}`,
+                            //     "title": "Mua sản phẩm",
+                            //     "webview_height_ratio": "tall",
+                            //     "messenger_extensions": true
+                            // },
                         ],
                     },
                     {
