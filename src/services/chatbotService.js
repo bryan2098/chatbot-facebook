@@ -426,6 +426,8 @@ let getSetListTemplate = (sender_psid) => {
         }
     }
 
+    console.log('response', response);
+
     return response;
 }
 
