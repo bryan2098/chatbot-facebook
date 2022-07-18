@@ -111,7 +111,7 @@ let getProductDetailTemplate = () => {
 
 let getStartedQuickReplyTemplate = () => {
     let response = {
-        "text": "Lựa chọn các đề mục để biết thêm về Mollie nhé",
+        "text": "Bạn có thể lựa chọn các đề mục để biết thêm về shop mình nhé.",
         "quick_replies": [
             CFGBTN.QUICK_REPLY.PRODUCT_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
@@ -162,7 +162,7 @@ let handleGetStarted = (sender_psid) => {
             let username = await common.getUserName(sender_psid);
 
             // send text message
-            let responseText = { 'text': `Chào ${username}. Mình là Mollie. Cảm ơn bạn đã ghé thăm shop mình nhé.` };
+            let responseText = { 'text': `Xin chào ${username}. Mình là bot Mollie.` };
             await common.callSendAPI(sender_psid, responseText);
 
 
