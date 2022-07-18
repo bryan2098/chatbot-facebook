@@ -10,20 +10,23 @@ const IMAGES = [
 
 
 
-let getStartedTemplate = async (sender_psid) => {
+// let getStartedTemplate = async (sender_psid) => {
 
-    let username = await common.getUserName(sender_psid);
+//     let username = await common.getUserName(sender_psid);
 
-    let elements = [
-        {
-            "title": `Xin chào ${username} đến với Mollie Shop`,
-            "subtitle": "Lựa chọn các gợi ý bên dưới để xem thêm nhé",
-            "image_url": CONT.LOGO
-        }
-    ];
+//     let elements = [
+//         {
+//             "title": `Xin chào ${username} đến với Mollie Shop`,
+//             "subtitle": "Lựa chọn các gợi ý bên dưới để xem thêm nhé",
+//             "image_url": CONT.LOGO,
+//             "buttons": [
+//                 CFGBTN.STARTED.PRODUCT_LIST
+//             ]
+//         }
+//     ];
 
-    return common.getTemplate(elements, "generic");
-}
+//     return common.getTemplate(elements, "generic");
+// }
 
 
 let getListProductTemplate = (sender_psid) => {
@@ -108,7 +111,7 @@ let getProductDetailTemplate = () => {
 
 let getStartedQuickReplyTemplate = () => {
     let response = {
-        "text": " ",
+        "text": "Lựa chọn các đề mục để biết thêm về Mollie nhé",
         "quick_replies": [
             CFGBTN.QUICK_REPLY.PRODUCT_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
@@ -159,13 +162,13 @@ let handleGetStarted = (sender_psid) => {
             let username = await common.getUserName(sender_psid);
 
             // send text message
-            // let responseText = { 'text': `Xin chào mừng ${username} đến với Mollie Shop` };
-            // await common.callSendAPI(sender_psid, responseText);
+            let responseText = { 'text': `Chào ${username}. Mình là Mollie. Cảm ơn bạn đã ghé thăm shop mình nhé.` };
+            await common.callSendAPI(sender_psid, responseText);
 
 
             // send generic message
-            let templateStarted = await getStartedTemplate(sender_psid);
-            await common.callSendAPI(sender_psid, templateStarted);
+            // let templateStarted = await getStartedTemplate(sender_psid);
+            // await common.callSendAPI(sender_psid, templateStarted);
 
             let quickReplyTemplate = getStartedQuickReplyTemplate();
             await common.callSendAPI(sender_psid, quickReplyTemplate);
