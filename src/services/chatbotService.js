@@ -2,21 +2,23 @@ require('dotenv').config();
 const common = require('../script/common');
 const CFGBTN = require('../configs/btn.json');
 const CFGBTNJS = require('../configs/btnConfig');
+const CONT = require('../configs/data.json');
 
 const IMAGES = [
     'https://res.cloudinary.com/dvweth7yl/image/upload/v1656778684/product/z3533592465888_34e9848417e25ad68aea56a81c56d115.jpg',
 ]
 
-let getStartedTemplate = () => {
+
+
+let getStartedTemplate = async (sender_psid) => {
+
+    let username = await common.getUserName(sender_psid);
 
     let elements = [
         {
-            "title": "Xin chào bạn đến với Mollie Shop",
-            "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
-            "image_url": IMAGES[0],
-            "buttons": [
-                CFGBTN.STARTED.PRODUCT_LIST
-            ],
+            "title": `Xin chào ${username} đến với Mollie Shop`,
+            "subtitle": "Lựa chọn các gợi ý bên dưới để xem thêm nhé",
+            "image_url": CONT.LOGO
         }
     ];
 
@@ -106,12 +108,11 @@ let getProductDetailTemplate = () => {
 
 let getStartedQuickReplyTemplate = () => {
     let response = {
-        "text": "Dưới đây là các sản phẩm nổi bật của Shop",
+        "text": " ",
         "quick_replies": [
             CFGBTN.QUICK_REPLY.PRODUCT_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
             CFGBTN.QUICK_REPLY.GUIDE_TO_USE,
-
         ]
     };
 
@@ -158,16 +159,16 @@ let handleGetStarted = (sender_psid) => {
             let username = await common.getUserName(sender_psid);
 
             // send text message
-            let responseText = { 'text': `Xin chào mừng ${username} đến với Mollie Shop` };
-            await common.callSendAPI(sender_psid, responseText);
+            // let responseText = { 'text': `Xin chào mừng ${username} đến với Mollie Shop` };
+            // await common.callSendAPI(sender_psid, responseText);
 
 
             // send generic message
-            let templateStarted = getStartedTemplate();
+            let templateStarted = await getStartedTemplate(sender_psid);
             await common.callSendAPI(sender_psid, templateStarted);
 
-            let responseQuickReplyTemplate = getStartedQuickReplyTemplate();
-            await common.callSendAPI(sender_psid, responseQuickReplyTemplate);
+            let quickReplyTemplate = getStartedQuickReplyTemplate();
+            await common.callSendAPI(sender_psid, quickReplyTemplate);
 
 
             resolve('done');
@@ -270,8 +271,8 @@ let handleSendSetList = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getSetListTemplate();
-            await common.callSendAPI(sender_psid, response);
+            let template = getSetListTemplate();
+            await common.callSendAPI(sender_psid, template);
 
 
             resolve('done');
@@ -286,8 +287,8 @@ let handleSendDressList = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getSetListTemplate(sender_psid);
-            await common.callSendAPI(sender_psid, response);
+            let template = getSetListTemplate(sender_psid);
+            await common.callSendAPI(sender_psid, template);
 
 
             resolve('done');
@@ -302,8 +303,8 @@ let handleSendSkirtList = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getSetListTemplate(sender_psid);
-            await common.callSendAPI(sender_psid, response);
+            let template = getSetListTemplate(sender_psid);
+            await common.callSendAPI(sender_psid, template);
 
 
             resolve('done');
@@ -323,8 +324,8 @@ let handleDetailProduct = (sender_psid) => {
         try {
 
             // send generic message
-            let response = getProductDetailTemplate();
-            await common.callSendAPI(sender_psid, response);
+            let template = getProductDetailTemplate();
+            await common.callSendAPI(sender_psid, template);
 
 
             resolve('done');
@@ -338,11 +339,11 @@ let handleShowImage = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            let responseImage = getImageTemplate();
-            let responseBtn = getButtonTemplate(sender_psid);
+            let templateImage = getImageTemplate();
+            let templateBtn = getButtonTemplate(sender_psid);
 
-            await common.callSendAPI(sender_psid, responseImage);
-            await common.callSendAPI(sender_psid, responseBtn);
+            await common.callSendAPI(sender_psid, templateImage);
+            await common.callSendAPI(sender_psid, templateBtn);
 
 
             resolve('done');

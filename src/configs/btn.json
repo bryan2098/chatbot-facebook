@@ -2,7 +2,7 @@
     "STARTED": {
         "PRODUCT_LIST": {
             "type": "postback",
-            "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
+            "title": "Sản phẩm nổi bật",
             "payload": "PRODUCT_LIST"
         }
     },
