@@ -1,5 +1,6 @@
 require('dotenv').config();
 const common = require('../script/common');
+const CFGBTN = require('../configs/btn.json');
 
 const IMAGES = [
     'https://res.cloudinary.com/dvweth7yl/image/upload/v1656778684/product/z3533592465888_34e9848417e25ad68aea56a81c56d115.jpg',
@@ -13,16 +14,7 @@ let getStartedTemplate = () => {
             "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
             "image_url": IMAGES[0],
             "buttons": [
-                {
-                    "type": "postback",
-                    "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
-                    "payload": "LIST_PRODUCT",
-                },
-                {
-                    "type": "postback",
-                    "title": "SHOPEE",
-                    "payload": "LINK_SHOPEE",
-                }
+                CFGBTN.STARTED.PRODUCT_LIST
             ],
         }
     ];
@@ -38,21 +30,9 @@ let getListProductTemplate = (sender_psid) => {
             "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
             "image_url": IMAGES[0],
             "buttons": [
-                {
-                    "type": "postback",
-                    "title": "Set",
-                    "payload": "SET_LIST",
-                },
-                {
-                    "type": "postback",
-                    "title": "ĐẦM",
-                    "payload": "DRESS_LIST",
-                },
-                {
-                    "type": "postback",
-                    "title": "VÁY",
-                    "payload": "SKIRT_LIST",
-                }
+                CFGBTN.PRODUCT_LIST.SET_LIST,
+                CFGBTN.PRODUCT_LIST.DRESS_LIST,
+                CFGBTN.PRODUCT_LIST.SKRIT_LIST
             ],
         },
         {
@@ -74,11 +54,7 @@ let getListProductTemplate = (sender_psid) => {
             "subtitle": "Kích cỡ của shop phù hợp với đa số phụ nữ Việt Nam < 58kg",
             "image_url": IMAGES[0],
             "buttons": [
-                {
-                    "type": "postback",
-                    "title": "CÁC SẢN PHẨM BÁN CHẠY",
-                    "payload": "BEST_SELLER",
-                },
+                CFGBTN.PRODUCT_LIST.BEST_SELLER,
             ],
         }
     ];
@@ -95,11 +71,7 @@ let getSetListTemplate = () => {
             "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
             "image_url": IMAGES[0],
             "buttons": [
-                {
-                    "type": "postback",
-                    "title": "Chi Tiết",
-                    "payload": "PRODUCT_DETAIL",
-                }
+                CFGBTN.PRODUCT.DETAIL,
             ],
         },
         {
@@ -107,11 +79,7 @@ let getSetListTemplate = () => {
             "subtitle": "Quay trở lại danh sách sản phẩm",
             "image_url": IMAGES[0],
             "buttons": [
-                {
-                    "type": "postback",
-                    "title": "Quay trở lại",
-                    "payload": "BACK_TO_LIST",
-                },
+                CFGBTN.COMMON.BACK_TO_LIST
             ],
         }
     ];
@@ -138,11 +106,7 @@ let getProductDetailTemplate = () => {
             "subtitle": "296.000đ",
             "image_url": IMAGES[0],
             "buttons": [
-                {
-                    "type": "postback",
-                    "title": "Hiển thị ảnh",
-                    "payload": "SHOW_IMAGE",
-                },
+                CFGBTN.PRODUCT.SHOW_IMAGE,
             ],
         },
         {
@@ -150,11 +114,7 @@ let getProductDetailTemplate = () => {
             "subtitle": "Quay trở lại danh sách sản phẩm",
             "image_url": IMAGES[0],
             "buttons": [
-                {
-                    "type": "postback",
-                    "title": "Quay trở lại",
-                    "payload": "BACK_TO_LIST",
-                },
+                CFGBTN.COMMON.BACK_TO_LIST
             ],
         }
     ];
@@ -163,51 +123,14 @@ let getProductDetailTemplate = () => {
 }
 
 
-let getBotMediaTemplate = () => {
-    let elements = [
-        {
-            "media_type": "<image|video>",
-            // "attachment_id": "765420714370507",
-            // Need upload video to https://business.facebook.com/creatorstudio/content_posts after that copy link video
-            "url": "https://business.facebook.com/hoidanITEricRestaurant/videos/765420714370507",
-            "buttons": [
-                {
-                    "type": "postback",
-                    "title": "Danh sách sản phẩm nổi bật",
-                    "payload": "PRODUCT_LIST",
-                },
-                {
-                    "type": "weburl",
-                    "url": `https://shopee.vn/mollieshop2501`,
-                    "title": "Shopee",
-                    "webview_height_ratio": "full",
-                },
-            ]
-        }
-    ];
-
-    return common.getTemplate(elements, 'media');
-}
-
 let getStartedQuickReplyTemplate = () => {
     let response = {
         "text": "Dưới đây là các sản phẩm nổi bật của Shop",
         "quick_replies": [
-            {
-                "content_type": "text",
-                "title": "Sản phẩm nổi bật",
-                "payload": "LIST_PRODUCT",
-            },
-            {
-                "content_type": "text",
-                "title": "Sản phẩm bán chạy",
-                "payload": "BEST_SELLER",
-            },
-            {
-                "content_type": "text",
-                "title": "Hướng dẫn sử dụng",
-                "payload": "GUIDE_TO_USE",
-            }
+            CFGBTN.QUICK_REPLY.PRODUCT_LIST,
+            CFGBTN.QUICK_REPLY.BEST_SELLER,
+            CFGBTN.QUICK_REPLY.GUIDE_TO_USE,
+
         ]
     };
 
@@ -265,7 +188,7 @@ async function handlePostback(sender_psid, received_postback) {
             await handleGetStarted(sender_psid);
             break;
 
-        case 'LIST_PRODUCT':
+        case 'PRODUCT_LIST':
             await handleSendListProduct(sender_psid);
             break;
 
@@ -304,7 +227,7 @@ async function handleMessage(sender_psid, received_message) {
     if (received_message.quick_reply && received_message.quick_reply.payload) {
 
         switch (received_message.quick_reply.payload) {
-            case 'LIST_PRODUCT':
+            case 'PRODUCT_LIST':
                 await handleSendListProduct(sender_psid);
                 break;
 
@@ -424,7 +347,7 @@ let getButtonTemplate = (sender_psid) => {
                     {
                         "type": "postback",
                         "title": "DANH SÁCH SẢN PHẨM NỔI BẬT",
-                        "payload": "LIST_PRODUCT",
+                        "payload": "PRODUCT_LIST",
                     },
                     {
                         "type": "weburl",
@@ -445,12 +368,8 @@ let handleShowImage = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            // send an image 
             let responseImage = getImageTemplate();
-            // send a button templates
             let responseBtn = getButtonTemplate(sender_psid);
-
-            // send generic message
 
             await common.callSendAPI(sender_psid, responseImage);
             await common.callSendAPI(sender_psid, responseBtn);
@@ -485,6 +404,31 @@ let handleShowImage = (sender_psid) => {
 //     })
 // }
 
+// let getBotMediaTemplate = () => {
+//     let elements = [
+//         {
+//             "media_type": "<image|video>",
+//             // "attachment_id": "765420714370507",
+//             // Need upload video to https://business.facebook.com/creatorstudio/content_posts after that copy link video
+//             "url": "https://business.facebook.com/hoidanITEricRestaurant/videos/765420714370507",
+//             "buttons": [
+//                 {
+//                     "type": "postback",
+//                     "title": "Danh sách sản phẩm nổi bật",
+//                     "payload": "PRODUCT_LIST",
+//                 },
+//                 {
+//                     "type": "weburl",
+//                     "url": `https://shopee.vn/mollieshop2501`,
+//                     "title": "Shopee",
+//                     "webview_height_ratio": "full",
+//                 },
+//             ]
+//         }
+//     ];
+
+//     return common.getTemplate(elements, 'media');
+// }
 
 module.exports = {
     handleGetStarted: handleGetStarted,
