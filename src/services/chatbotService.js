@@ -125,6 +125,21 @@ let getStartedQuickReplyTemplate = () => {
     return response;
 }
 
+let getQuickReplyTemplate = () => {
+    let response = {
+        "quick_replies": [
+            CFGBTN.QUICK_REPLY.PRODUCT_LIST,
+            CFGBTN.QUICK_REPLY.BEST_SELLER,
+            CFGBTN.QUICK_REPLY.PRODUCT_NEW,
+            CFGBTN.QUICK_REPLY.POLICY,
+            CFGBTN.QUICK_REPLY.SHOP_INFO,
+            CFGBTN.QUICK_REPLY.PRODUCT_INFO,
+        ]
+    };
+
+    return response;
+}
+
 let getImageTemplate = () => {
     let response = {
         "attachment": {
@@ -257,7 +272,7 @@ async function handleMessage(sender_psid, received_message) {
                 break;
         }
 
-        let quickReplyTemplate = getStartedQuickReplyTemplate();
+        let quickReplyTemplate = getQuickReplyTemplate();
         await common.callSendAPI(sender_psid, quickReplyTemplate);
 
         return;
