@@ -21,21 +21,12 @@ let getListProductTemplate = (sender_psid) => {
             ],
         },
         {
-            "title": "Giờ mở cửa",
-            "subtitle": "Tất cả các ngày trong tuần",
-            "image_url": IMAGES[0],
+            "title": "Đặt hàng",
+            "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
             "buttons": [
                 CFGBTNJS.btnBuyProduct(sender_psid),
             ],
         },
-        {
-            "title": "Kích cỡ chung của shop",
-            "subtitle": "Kích cỡ của shop phù hợp với đa số phụ nữ Việt Nam < 58kg",
-            "image_url": IMAGES[0],
-            "buttons": [
-                CFGBTN.PRODUCT_LIST.BEST_SELLER,
-            ],
-        }
     ];
 
     return common.getTemplate(elements, "generic");
@@ -188,9 +179,7 @@ let handleSendListProduct = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            // send generic message
-            let response = getListProductTemplate(sender_psid);
-            await common.callSendAPI(sender_psid, response);
+
 
             resolve('done');
         } catch (error) {
@@ -434,6 +423,10 @@ let handleSendInformation = (sender_psid) => {
 
             // send information product
             await common.callSendAPI(sender_psid, template.templateInfoProduct());
+
+            // send generic message
+            let response = getListProductTemplate(sender_psid);
+            await common.callSendAPI(sender_psid, response);
 
             resolve('done');
         } catch (error) {
