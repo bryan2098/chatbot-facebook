@@ -2,32 +2,11 @@ require('dotenv').config();
 const common = require('../script/common');
 const CFGBTN = require('../configs/btn.json');
 const CFGBTNJS = require('../configs/btnConfig');
-const CONT = require('../configs/data.json');
+const template = require('./templateService');
 
 const IMAGES = [
     'https://res.cloudinary.com/dvweth7yl/image/upload/v1656778684/product/z3533592465888_34e9848417e25ad68aea56a81c56d115.jpg',
 ]
-
-
-
-// let getStartedTemplate = async (sender_psid) => {
-
-//     let username = await common.getUserName(sender_psid);
-
-//     let elements = [
-//         {
-//             "title": `Xin chào ${username} đến với Mollie Shop`,
-//             "subtitle": "Lựa chọn các gợi ý bên dưới để xem thêm nhé",
-//             "image_url": CONT.LOGO,
-//             "buttons": [
-//                 CFGBTN.STARTED.PRODUCT_LIST
-//             ]
-//         }
-//     ];
-
-//     return common.getTemplate(elements, "generic");
-// }
-
 
 let getListProductTemplate = (sender_psid) => {
     let elements = [
@@ -193,11 +172,6 @@ let handleGetStarted = (sender_psid) => {
             // send text message
             let responseText = { 'text': `Xin chào ${username}. Mình là bot Mollie.` };
             await common.callSendAPI(sender_psid, responseText);
-
-
-            // send generic message
-            // let templateStarted = await getStartedTemplate(sender_psid);
-            // await common.callSendAPI(sender_psid, templateStarted);
 
             let quickReplyTemplate = getStartedQuickReplyTemplate();
             await common.callSendAPI(sender_psid, quickReplyTemplate);
@@ -485,26 +459,11 @@ let handleSendInformation = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            let templateInfoShop = {
-                text: ` -- SHOP --
-                \n - Giờ mở cửa: Từ 8:00 - 20:00. Tất cả các ngày trong tuần
-                \n - Hotline: 0869.881.504
-                \n - Địa chỉ: Phạm Thế Hiển, P4. Q8. TP.HCM
-                \n - Shopee: https://shopee.vn/mollieshop2501
-                `
-            };
+            // send information shop
+            await common.callSendAPI(sender_psid, template.templateInfoShop());
 
-            await common.callSendAPI(sender_psid, templateInfoShop);
-
-            let templateInfoProduct = {
-                text: ` -- SẢN PHẨM --
-                \n - Chuyên sỉ, lẻ các mặt hàng thiết kế, hàng Quảng Châu, hàng VNXK
-                \n - Cam kết chất lượng đúng như mô tả
-                \n - Size chung < 58kg
-                `
-            };
-
-            await common.callSendAPI(sender_psid, templateInfoProduct);
+            // send information product
+            await common.callSendAPI(sender_psid, template.templateInfoProduct());
 
             resolve('done');
         } catch (error) {
