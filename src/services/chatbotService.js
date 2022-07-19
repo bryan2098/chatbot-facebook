@@ -109,6 +109,7 @@ let getProductDetailTemplate = () => {
 }
 
 
+
 let getStartedQuickReplyTemplate = () => {
     let response = {
         "text": "Để xem nhiều sản phẩm hơn tại Shopee, khách yêu nhấn vào dấu 3 gạch ở góc phải màn hình nhé.",
@@ -125,21 +126,30 @@ let getStartedQuickReplyTemplate = () => {
     return response;
 }
 
-let getQuickReplyTemplate = () => {
+let getQuickReplyTemplate = (exlTag) => {
+
+    let tags = [
+        CFGBTN.QUICK_REPLY.PRODUCT_LIST,
+        CFGBTN.QUICK_REPLY.BEST_SELLER,
+        CFGBTN.QUICK_REPLY.PRODUCT_NEW,
+        CFGBTN.QUICK_REPLY.POLICY,
+        CFGBTN.QUICK_REPLY.SHOP_INFO,
+        CFGBTN.QUICK_REPLY.PRODUCT_INFO,
+    ];
+
+    tags = tags.filter((tag) => {
+        return tag.payload !== exlTag;
+    })
+
     let response = {
-        "text": "Chọn thêm nhé",
-        "quick_replies": [
-            CFGBTN.QUICK_REPLY.PRODUCT_LIST,
-            CFGBTN.QUICK_REPLY.BEST_SELLER,
-            CFGBTN.QUICK_REPLY.PRODUCT_NEW,
-            CFGBTN.QUICK_REPLY.POLICY,
-            CFGBTN.QUICK_REPLY.SHOP_INFO,
-            CFGBTN.QUICK_REPLY.PRODUCT_INFO,
-        ]
+        "text": "Chọn đề mục để biết thêm thông tin nhé",
+        "quick_replies": tags
     };
 
     return response;
 }
+
+
 
 let getImageTemplate = () => {
     let response = {
@@ -264,16 +274,18 @@ async function handleMessage(sender_psid, received_message) {
     // check message for with replies
     if (received_message.quick_reply && received_message.quick_reply.payload) {
 
+        let tag = null;
         switch (received_message.quick_reply.payload) {
             case 'PRODUCT_LIST':
                 await handleSendListProduct(sender_psid);
+                tag = 'PRODUCT_LIST';
                 break;
 
             default:
                 break;
         }
 
-        let quickReplyTemplate = getQuickReplyTemplate();
+        let quickReplyTemplate = getQuickReplyTemplate(tag);
         await common.callSendAPI(sender_psid, quickReplyTemplate);
 
         return;
