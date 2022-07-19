@@ -80,7 +80,7 @@
         },
         "PAYMENT_METHOD": {
             "content_type": "text",
-            "title": "PT Thanh toán",
+            "title": "Thanh toán",
             "payload": "PAYMENT_METHOD"
         }
     }

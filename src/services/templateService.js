@@ -54,8 +54,9 @@ const templateBuyProductPolicy = () => {
 const templateReturnPolicy = () => {
     return {
         text: ` -- CHÍNH SÁCH ĐỔI TRẢ --
-        \n - Trả hàng khi shop giao nhầm size hoặc không đúng mẫu (shop trả phí)
+        \n - Hoàn tiền 100% nếu không vừa size hoặc shop giao không đúng mẫu (shop trả phí)
         \n - Đổi trả sản phẩm khi sản phẩm khi bị lỗi (shop trả phí)
+        \n - Điểu kiện: Sản phẩm còn mới, còn nguyên túi zip/hộp tem mác (nếu có)
         \n (Chỉ xử lý 2 trường hợp trên khi có quay video khui hàng để tránh trường hợp không phải lỗi của shop - trả hàng từ 2-3 ngày sau khi nhận hàng)
         `
     }
