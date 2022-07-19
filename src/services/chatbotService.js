@@ -15,8 +15,7 @@ const IMAGES = [
 let getListProductTemplate = (sender_psid) => {
     let elements = [
         {
-            "title": "Danh sách sản phẩm nổi bật của Mollie",
-            "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
+            "title": "Sản phẩm nổi bật",
             "image_url": IMAGES[0],
             "buttons": [
                 CFGBTN.PRODUCT_LIST.SET_LIST,
