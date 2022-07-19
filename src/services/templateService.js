@@ -30,9 +30,9 @@ const templatePaymentMethod = () => {
         \n    *Ngân hàng: Techcombank
         \n    *STK: 19036205125014
         \n    *Tên: NGUYEN MINH TRI
-        \n -Nội dung chuyểnh khoản-
+        \n -Nội dung chuyển khoản-
         \n Họ tên - Số điện thoại
-        \n (Vui lòng chụp màn hình lại và gửi shop để xác nhận thanh toán)
+        \n (Vui lòng chụp màn hình lại và gửi shop để xác nhận thanh toán nhé.)
         \n
         \n COD: Ship toàn quốc
         \n   *Miễn ship nội thành (TP.HCM)

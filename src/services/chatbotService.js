@@ -237,6 +237,9 @@ async function handlePostback(sender_psid, received_postback) {
         case 'BACK_TO_LIST':
             await handleBackToList(sender_psid);
             break;
+
+        default:
+            break;
     }
 }
 
@@ -293,9 +296,10 @@ async function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     if (received_message.text) {
 
+        let username = await common.getUserName(sender_psid);
         // Create the payload for a basic text message
         response = {
-            "text": `Chào mừng bạn đến với Mollie Shop. Bạn đợi mình một chút nhé. Mình sẽ trả lời ngay <3`
+            "text": `Chào mừng ${username} đến với Mollie Shop. ${username} đợi một chút sẽ có cô bé dễ thương trả lời cho nhé. <3`
         }
     }
 
