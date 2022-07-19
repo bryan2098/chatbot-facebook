@@ -117,6 +117,7 @@ let getStartedQuickReplyTemplate = () => {
             CFGBTN.QUICK_REPLY.PRODUCT_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
             CFGBTN.QUICK_REPLY.PRODUCT_NEW,
+            CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
             CFGBTN.QUICK_REPLY.POLICY,
             CFGBTN.QUICK_REPLY.SHOP_INFO,
             CFGBTN.QUICK_REPLY.PRODUCT_INFO,
@@ -132,6 +133,7 @@ let getQuickReplyTemplate = (exlTag) => {
         CFGBTN.QUICK_REPLY.PRODUCT_LIST,
         CFGBTN.QUICK_REPLY.BEST_SELLER,
         CFGBTN.QUICK_REPLY.PRODUCT_NEW,
+        CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
         CFGBTN.QUICK_REPLY.POLICY,
         CFGBTN.QUICK_REPLY.SHOP_INFO,
         CFGBTN.QUICK_REPLY.PRODUCT_INFO,
@@ -291,6 +293,11 @@ async function handleMessage(sender_psid, received_message) {
                 tag = 'PRODUCT_NEW';
                 break;
 
+            case 'PAYMENT_METHOD':
+                await handleSendPaymentMethod(sender_psid);
+                tag = 'PAYMENT_METHOD';
+                break;
+
             case 'POLICY':
                 await handleSendPolicy(sender_psid);
                 tag = 'POLICY';
@@ -421,15 +428,55 @@ let handleSendPolicy = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            let templatePolicy = {
-                text: ` -- Chính sách Mua hàng --
+            let templatePolicyBuyProduct = {
+                text: ` -- CHÍNH SÁCH MUA HÀNG --
                 \n - Miễn ship từ 2 sản phẩm trở lên
                 \n - Giảm 5-10% khi mua từ 3 sản phẩm trở lên
                 \n - Giảm 15-20% khi mua từ 5 sản phẩm trở lên và trở thành khách hàng thân thiết của Mollie 
                 `
-            }
+            };
 
-            await common.callSendAPI(sender_psid, templatePolicy);
+            await common.callSendAPI(sender_psid, templatePolicyBuyProduct);
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+let handleSendPaymentMethod = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            let templatePaymentMethod = {
+                text: ` -- PHƯƠNG THỨC THANH TOÁN --
+                \n
+                \n - Chuyển khoản ngân hàng:
+                \n
+                \n    *Ngân hàng: Sacombank
+                \n    *STK: 060266421225
+                \n    *Tên: NGUYEN THI NHAT TRINH
+                \n
+                \n
+                \n    *Ngân hàng: Techcombank
+                \n    *STK: 19036205125014
+                \n    *Tên: NGUYEN MINH TRI
+                \n
+                \n
+                \n -Nội dung chuyểnh khoản-
+                \n
+                \n Họ tên - Số điện thoại
+                \n (Vui lòng chụp màn hình lại và gửi shop để xác nhận thanh toán)
+                \n
+                \n - COD:
+                \n   *Ship COD toàn quốc
+                \n   *Miễn ship nội thành (TP.HCM)
+                \n   *Ngoại thành phí ship là 30.000đ
+                `
+            };
+
+            await common.callSendAPI(sender_psid, templatePaymentMethod);
 
             resolve('done');
         } catch (error) {

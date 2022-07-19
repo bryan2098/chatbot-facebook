@@ -82,6 +82,11 @@
             "content_type": "text",
             "title": "Thông tin sản phẩm",
             "payload": "PRODUCT_INFO"
+        },
+        "PAYMENT_METHOD": {
+            "content_type": "text",
+            "title": "Phương thức thanh toán",
+            "payload": "PAYMENT_METHOD"
         }
     }
 }
