@@ -85,7 +85,7 @@
         },
         "PAYMENT_METHOD": {
             "content_type": "text",
-            "title": "Phương thức thanh toán",
+            "title": "PT Thanh toán",
             "payload": "PAYMENT_METHOD"
         }
     }

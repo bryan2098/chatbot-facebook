@@ -438,6 +438,16 @@ let handleSendPolicy = (sender_psid) => {
 
             await common.callSendAPI(sender_psid, templatePolicyBuyProduct);
 
+            let templateReturnPolicy = {
+                text: ` -- CHÍNH SÁCH ĐỔI TRẢ --
+                \n - Trả hàng khi shop giao nhầm size hoặc không đúng mẫu (shop trả phí)
+                \n - Đổi trả sản phẩm khi sản phẩm khi bị lỗi (shop trả phí)
+                \n (Chỉ xử lý 2 trường hợp trên khi có quay video khui hàng để tránh trường hợp không phải lỗi của shop - trả hàng từ 2-3 ngày sau khi nhận hàng)
+                `
+            };
+
+            await common.callSendAPI(sender_psid, templateReturnPolicy);
+
             resolve('done');
         } catch (error) {
             reject(error)
