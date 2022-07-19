@@ -127,6 +127,7 @@ let getStartedQuickReplyTemplate = () => {
 
 let getQuickReplyTemplate = () => {
     let response = {
+        "text": "Chọn thêm nhé",
         "quick_replies": [
             CFGBTN.QUICK_REPLY.PRODUCT_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
