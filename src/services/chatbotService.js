@@ -451,7 +451,7 @@ let handleSendPaymentMethod = (sender_psid) => {
 
             let templatePaymentMethod = {
                 text: ` -- PHƯƠNG THỨC THANH TOÁN --
-                \n - Chuyển khoản ngân hàng:
+                \n Chuyển khoản ngân hàng:
                 \n    *Ngân hàng: Sacombank
                 \n    *STK: 060266421225
                 \n    *Tên: NGUYEN THI NHAT TRINH
@@ -459,14 +459,11 @@ let handleSendPaymentMethod = (sender_psid) => {
                 \n    *Ngân hàng: Techcombank
                 \n    *STK: 19036205125014
                 \n    *Tên: NGUYEN MINH TRI
-                \n
                 \n -Nội dung chuyểnh khoản-
-                \n
                 \n Họ tên - Số điện thoại
                 \n (Vui lòng chụp màn hình lại và gửi shop để xác nhận thanh toán)
                 \n
-                \n - COD:
-                \n   *Ship COD toàn quốc
+                \n COD: Ship toàn quốc
                 \n   *Miễn ship nội thành (TP.HCM)
                 \n   *Ngoại thành phí ship là 30.000đ
                 `
