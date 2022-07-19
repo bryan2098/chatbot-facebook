@@ -58,10 +58,30 @@
             "title": "Sản phẩm bán chạy",
             "payload": "BEST_SELLER"
         },
+        "PRODUCT_NEW": {
+            "content_type": "text",
+            "title": "Hàng mới về",
+            "payload": "PRODUCT_NEW"
+        },
         "GUIDE_TO_USE": {
             "content_type": "text",
             "title": "Hướng dẫn sử dụng",
             "payload": "GUIDE_TO_USE"
+        },
+        "POLICY": {
+            "content_type": "text",
+            "title": "Chính sách",
+            "payload": "POLICY"
+        },
+        "SHOP_INFO": {
+            "content_type": "text",
+            "title": "Thông tin cửa hàng",
+            "payload": "SHOP_INFO"
+        },
+        "PRODUCT_INFO": {
+            "content_type": "text",
+            "title": "Thông tin sản phẩm",
+            "payload": "PRODUCT_INFO"
         }
     }
 }

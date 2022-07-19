@@ -111,11 +111,14 @@ let getProductDetailTemplate = () => {
 
 let getStartedQuickReplyTemplate = () => {
     let response = {
-        "text": "Bạn có thể lựa chọn các đề mục để biết thêm về shop mình nhé.",
+        "text": "Để xem nhiều sản phẩm hơn tại Shopee, khách yêu nhấn vào dấu 3 gạch ở góc phải màn hình nhé.",
         "quick_replies": [
             CFGBTN.QUICK_REPLY.PRODUCT_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
-            CFGBTN.QUICK_REPLY.GUIDE_TO_USE,
+            CFGBTN.QUICK_REPLY.PRODUCT_NEW,
+            CFGBTN.QUICK_REPLY.POLICY,
+            CFGBTN.QUICK_REPLY.SHOP_INFO,
+            CFGBTN.QUICK_REPLY.PRODUCT_INFO,
         ]
     };
 
