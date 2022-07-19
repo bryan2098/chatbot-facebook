@@ -6,7 +6,10 @@ const CFGBTNJS = require('../configs/btnConfig');
 const template = require('./templateService');
 
 const IMAGES = [
-    'https://res.cloudinary.com/dvweth7yl/image/upload/v1656778684/product/z3533592465888_34e9848417e25ad68aea56a81c56d115.jpg',
+    'https://res.cloudinary.com/dvweth7yl/image/upload/v1658238170/product/3.jpg',
+    'https://res.cloudinary.com/dvweth7yl/image/upload/v1658238154/product/2.jpg',
+    'https://res.cloudinary.com/dvweth7yl/image/upload/v1658238146/product/1.jpg',
+    'https://res.cloudinary.com/dvweth7yl/image/upload/v1658238138/product/4.jpg'
 ]
 
 let getListProductTemplate = (sender_psid) => {
@@ -14,6 +17,7 @@ let getListProductTemplate = (sender_psid) => {
         {
             "title": "Danh sách sản phẩm nổi bật của Mollie",
             "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
+            "image_url": IMAGES[0],
             "buttons": [
                 CFGBTN.PRODUCT_LIST.SET_LIST,
                 CFGBTN.PRODUCT_LIST.DRESS_LIST,
@@ -23,6 +27,7 @@ let getListProductTemplate = (sender_psid) => {
         {
             "title": "Đặt hàng",
             "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
+            "image_url": IMAGES[1],
             "buttons": [
                 CFGBTNJS.btnBuyProduct(sender_psid),
             ],
