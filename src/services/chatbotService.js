@@ -1,6 +1,7 @@
 require('dotenv').config();
 const common = require('../script/common');
 const CFGBTN = require('../configs/btn.json');
+const DATA = require('../configs/data.json');
 const CFGBTNJS = require('../configs/btnConfig');
 const template = require('./templateService');
 
@@ -13,7 +14,7 @@ let getListProductTemplate = (sender_psid) => {
         {
             "title": "Danh sách sản phẩm nổi bật của Mollie",
             "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
-            "image_url": IMAGES[0],
+            "image_url": DATA.LOGO,
             "buttons": [
                 CFGBTN.PRODUCT_LIST.SET_LIST,
                 CFGBTN.PRODUCT_LIST.DRESS_LIST,
@@ -23,6 +24,7 @@ let getListProductTemplate = (sender_psid) => {
         {
             "title": "Đặt hàng",
             "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
+            "image_url": DATA.LOGO,
             "buttons": [
                 CFGBTNJS.btnBuyProduct(sender_psid),
             ],
