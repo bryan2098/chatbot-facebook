@@ -73,15 +73,10 @@
             "title": "Chính sách",
             "payload": "POLICY"
         },
-        "SHOP_INFO": {
+        "INFOMATION": {
             "content_type": "text",
-            "title": "Thông tin cửa hàng",
-            "payload": "SHOP_INFO"
-        },
-        "PRODUCT_INFO": {
-            "content_type": "text",
-            "title": "Thông tin sản phẩm",
-            "payload": "PRODUCT_INFO"
+            "title": "Thông tin",
+            "payload": "INFOMATION"
         },
         "PAYMENT_METHOD": {
             "content_type": "text",

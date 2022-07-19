@@ -119,8 +119,7 @@ let getStartedQuickReplyTemplate = () => {
             CFGBTN.QUICK_REPLY.PRODUCT_NEW,
             CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
             CFGBTN.QUICK_REPLY.POLICY,
-            CFGBTN.QUICK_REPLY.SHOP_INFO,
-            CFGBTN.QUICK_REPLY.PRODUCT_INFO,
+            CFGBTN.QUICK_REPLY.INFOMATION,
         ]
     };
 
@@ -135,8 +134,7 @@ let getQuickReplyTemplate = (exlTag) => {
         CFGBTN.QUICK_REPLY.PRODUCT_NEW,
         CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
         CFGBTN.QUICK_REPLY.POLICY,
-        CFGBTN.QUICK_REPLY.SHOP_INFO,
-        CFGBTN.QUICK_REPLY.PRODUCT_INFO,
+        CFGBTN.QUICK_REPLY.INFOMATION
     ];
 
     tags = tags.filter((tag) => {
@@ -303,14 +301,9 @@ async function handleMessage(sender_psid, received_message) {
                 tag = 'POLICY';
                 break;
 
-            case 'SHOP_INFO':
-                await handleSendListProduct(sender_psid);
-                tag = 'SHOP_INFO';
-                break;
-
-            case 'PRODUCT_INFO':
-                await handleSendListProduct(sender_psid);
-                tag = 'PRODUCT_INFO';
+            case 'INFOMATION':
+                await handleSendInformation(sender_psid);
+                tag = 'INFOMATION';
                 break;
 
             default:
@@ -480,6 +473,38 @@ let handleSendPaymentMethod = (sender_psid) => {
             };
 
             await common.callSendAPI(sender_psid, templatePaymentMethod);
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+let handleSendInformation = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            let templateInfoShop = {
+                text: ` -- SHOP --
+                \n - Giờ mở cửa: Từ 8:00 - 20:00. Tất cả các ngày trong tuần
+                \n - Hotline: 0869.881.504
+                \n - Địa chỉ: Phạm Thế Hiển, P4. Q8. TP.HCM
+                \n - Shopee: https://shopee.vn/mollieshop2501
+                `
+            };
+
+            await common.callSendAPI(sender_psid, templateInfoShop);
+
+            let templateInfoProduct = {
+                text: ` -- SẢN PHẨM --
+                \n - Chuyên sỉ, lẻ các mặt hàng thiết kế, hàng Quảng Châu, hàng VNXK
+                \n - Cam kết chất lượng đúng như mô tả
+                \n - Size chung < 58kg
+                `
+            };
+
+            await common.callSendAPI(sender_psid, templateInfoProduct);
 
             resolve('done');
         } catch (error) {
