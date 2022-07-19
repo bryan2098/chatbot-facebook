@@ -14,7 +14,6 @@ let getListProductTemplate = (sender_psid) => {
         {
             "title": "Danh sách sản phẩm nổi bật của Mollie",
             "subtitle": "Dưới đây là các sản phẩm nổi bật của Shop",
-            "image_url": DATA.LOGO,
             "buttons": [
                 CFGBTN.PRODUCT_LIST.SET_LIST,
                 CFGBTN.PRODUCT_LIST.DRESS_LIST,
@@ -24,7 +23,6 @@ let getListProductTemplate = (sender_psid) => {
         {
             "title": "Đặt hàng",
             "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
-            "image_url": DATA.LOGO,
             "buttons": [
                 CFGBTNJS.btnBuyProduct(sender_psid),
             ],
@@ -89,8 +87,8 @@ let getStartedQuickReplyTemplate = () => {
             CFGBTN.QUICK_REPLY.PRODUCT_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
             CFGBTN.QUICK_REPLY.PRODUCT_NEW,
-            CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
             CFGBTN.QUICK_REPLY.INFOMATION,
+            CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
             CFGBTN.QUICK_REPLY.POLICY,
         ]
     };
@@ -104,8 +102,8 @@ let getQuickReplyTemplate = (exlTag) => {
         CFGBTN.QUICK_REPLY.PRODUCT_LIST,
         CFGBTN.QUICK_REPLY.BEST_SELLER,
         CFGBTN.QUICK_REPLY.PRODUCT_NEW,
-        CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
         CFGBTN.QUICK_REPLY.INFOMATION,
+        CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
         CFGBTN.QUICK_REPLY.POLICY,
     ];
 
