@@ -15,7 +15,7 @@ const IMAGES = [
 let getListProductTemplate = (sender_psid) => {
     let elements = [
         {
-            "title": "Sản phẩm nổi bật",
+            "title": "Danh mục sản phẩm",
             "image_url": IMAGES[0],
             "buttons": [
                 CFGBTN.PRODUCT_LIST.SET_LIST,
@@ -24,7 +24,7 @@ let getListProductTemplate = (sender_psid) => {
             ],
         },
         {
-            "title": "Đặt hàng",
+            "title": "Vận chuyển",
             "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
             "image_url": IMAGES[1],
             "buttons": [

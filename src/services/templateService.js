@@ -14,7 +14,7 @@ const templateInfoProduct = () => {
         text: ` -- SẢN PHẨM --
         \n - Chuyên sỉ, lẻ các mặt hàng thiết kế, hàng Quảng Châu, hàng VNXK
         \n - Cam kết chất lượng đúng như mô tả
-        \n - Size chung < 58kg
+        \n - Size chung < 55kg
         `
     };
 }
