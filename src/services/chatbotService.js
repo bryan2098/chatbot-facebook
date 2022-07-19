@@ -199,10 +199,6 @@ let handleSendListProduct = (sender_psid) => {
     })
 }
 
-let callbackQuickReply = async () => {
-    let quickReplyTemplate = getStartedQuickReplyTemplate();
-    await common.callSendAPI(sender_psid, quickReplyTemplate);
-}
 
 // Handles messaging_postbacks events
 async function handlePostback(sender_psid, received_postback) {
@@ -255,12 +251,14 @@ async function handleMessage(sender_psid, received_message) {
         switch (received_message.quick_reply.payload) {
             case 'PRODUCT_LIST':
                 await handleSendListProduct(sender_psid);
-                await callbackQuickReply();
                 break;
 
             default:
                 break;
         }
+
+        let quickReplyTemplate = getStartedQuickReplyTemplate();
+        await common.callSendAPI(sender_psid, quickReplyTemplate);
 
         return;
     }
