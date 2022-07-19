@@ -90,8 +90,8 @@ let getStartedQuickReplyTemplate = () => {
             CFGBTN.QUICK_REPLY.BEST_SELLER,
             CFGBTN.QUICK_REPLY.PRODUCT_NEW,
             CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
-            CFGBTN.QUICK_REPLY.POLICY,
             CFGBTN.QUICK_REPLY.INFOMATION,
+            CFGBTN.QUICK_REPLY.POLICY,
         ]
     };
 
@@ -105,8 +105,8 @@ let getQuickReplyTemplate = (exlTag) => {
         CFGBTN.QUICK_REPLY.BEST_SELLER,
         CFGBTN.QUICK_REPLY.PRODUCT_NEW,
         CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
+        CFGBTN.QUICK_REPLY.INFOMATION,
         CFGBTN.QUICK_REPLY.POLICY,
-        CFGBTN.QUICK_REPLY.INFOMATION
     ];
 
     tags = tags.filter((tag) => {
