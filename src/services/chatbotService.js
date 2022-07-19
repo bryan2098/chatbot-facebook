@@ -423,11 +423,13 @@ let handleSendPolicy = (sender_psid) => {
 
             let templatePolicy = {
                 text: `--- CHÍNH SÁCH --- 
-                \n\n
-                * **Mua hàng*
+
+                **Mua hàng**
                 \n - Miễn ship từ 2 sản phẩm trở lên
                 \n - Giảm 5-10% khi mua từ 3 sản phẩm trở lên
                 \n - Giảm 15-20% khi mua từ 5 sản phẩm trở lên và trở thành khách hàng thân thiết của Mollie 
+
+                
                 `
             }
 
