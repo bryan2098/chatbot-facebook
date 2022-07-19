@@ -451,18 +451,14 @@ let handleSendPaymentMethod = (sender_psid) => {
 
             let templatePaymentMethod = {
                 text: ` -- PHƯƠNG THỨC THANH TOÁN --
-                \n
                 \n - Chuyển khoản ngân hàng:
-                \n
                 \n    *Ngân hàng: Sacombank
                 \n    *STK: 060266421225
                 \n    *Tên: NGUYEN THI NHAT TRINH
                 \n
-                \n
                 \n    *Ngân hàng: Techcombank
                 \n    *STK: 19036205125014
                 \n    *Tên: NGUYEN MINH TRI
-                \n
                 \n
                 \n -Nội dung chuyểnh khoản-
                 \n
