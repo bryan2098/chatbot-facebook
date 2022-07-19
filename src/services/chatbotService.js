@@ -281,6 +281,31 @@ async function handleMessage(sender_psid, received_message) {
                 tag = 'PRODUCT_LIST';
                 break;
 
+            case 'BEST_SELLER':
+                await handleSendListProduct(sender_psid);
+                tag = 'BEST_SELLER';
+                break;
+
+            case 'PRODUCT_NEW':
+                await handleSendListProduct(sender_psid);
+                tag = 'PRODUCT_NEW';
+                break;
+
+            case 'POLICY':
+                await handleSendPolicy(sender_psid);
+                tag = 'POLICY';
+                break;
+
+            case 'SHOP_INFO':
+                await handleSendListProduct(sender_psid);
+                tag = 'SHOP_INFO';
+                break;
+
+            case 'PRODUCT_INFO':
+                await handleSendListProduct(sender_psid);
+                tag = 'PRODUCT_INFO';
+                break;
+
             default:
                 break;
         }
@@ -383,6 +408,30 @@ let handleShowImage = (sender_psid) => {
             await common.callSendAPI(sender_psid, templateImage);
             await common.callSendAPI(sender_psid, templateBtn);
 
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+
+let handleSendPolicy = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            let templatePolicy = {
+                text: `--- CHÍNH SÁCH --- 
+                \n\n
+                * **Mua hàng*
+                \n - Miễn ship từ 2 sản phẩm trở lên
+                \n - Giảm 5-10% khi mua từ 3 sản phẩm trở lên
+                \n - Giảm 15-20% khi mua từ 5 sản phẩm trở lên và trở thành khách hàng thân thiết của Mollie 
+                `
+            }
+
+            await common.callSendAPI(sender_psid, templatePolicy);
 
             resolve('done');
         } catch (error) {
