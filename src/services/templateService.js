@@ -1,3 +1,5 @@
+const CFGBTN = require('../configs/btn.json');
+
 const templateInfoShop = () => {
     return {
         text: ` -- SHOP --
@@ -62,10 +64,68 @@ const templateReturnPolicy = () => {
     }
 };
 
+const getStartedQuickReplyTemplate = () => {
+    let response = {
+        "text": "Để xem nhiều sản phẩm hơn tại Shopee, khách yêu nhấn vào dấu 3 gạch ở góc phải màn hình nhé.",
+        "quick_replies": [
+            CFGBTN.QUICK_REPLY.PRODUCT_LIST,
+            CFGBTN.QUICK_REPLY.BEST_SELLER,
+            CFGBTN.QUICK_REPLY.PRODUCT_NEW,
+            CFGBTN.QUICK_REPLY.INFOMATION,
+            CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
+            CFGBTN.QUICK_REPLY.POLICY,
+        ]
+    };
+
+    return response;
+}
+
+const getQuickReplyTemplate = (exlTag) => {
+
+    let tags = [
+        CFGBTN.QUICK_REPLY.PRODUCT_LIST,
+        CFGBTN.QUICK_REPLY.BEST_SELLER,
+        CFGBTN.QUICK_REPLY.PRODUCT_NEW,
+        CFGBTN.QUICK_REPLY.INFOMATION,
+        CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
+        CFGBTN.QUICK_REPLY.POLICY,
+    ];
+
+    tags = tags.filter((tag) => {
+        return tag.payload !== exlTag;
+    })
+
+    let response = {
+        "text": "Chọn đề mục để biết thêm thông tin nhé",
+        "quick_replies": tags
+    };
+
+    return response;
+}
+
+let getImageTemplate = (image) => {
+    let response = {
+        "attachment": {
+            "type": "image",
+            "payload": {
+                "url": image,
+                "is_reusable": true
+            }
+        }
+    };
+
+    return response;
+}
+
+
+
 module.exports = {
     templateInfoShop: templateInfoShop,
     templateInfoProduct: templateInfoProduct,
     templatePaymentMethod: templatePaymentMethod,
     templateBuyProductPolicy: templateBuyProductPolicy,
-    templateReturnPolicy: templateReturnPolicy
+    templateReturnPolicy: templateReturnPolicy,
+    getStartedQuickReplyTemplate: getStartedQuickReplyTemplate,
+    getQuickReplyTemplate: getQuickReplyTemplate,
+    getImageTemplate: getImageTemplate
 }

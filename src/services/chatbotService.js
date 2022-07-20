@@ -83,63 +83,6 @@ let getProductDetailTemplate = () => {
 }
 
 
-
-let getStartedQuickReplyTemplate = () => {
-    let response = {
-        "text": "Để xem nhiều sản phẩm hơn tại Shopee, khách yêu nhấn vào dấu 3 gạch ở góc phải màn hình nhé.",
-        "quick_replies": [
-            CFGBTN.QUICK_REPLY.PRODUCT_LIST,
-            CFGBTN.QUICK_REPLY.BEST_SELLER,
-            CFGBTN.QUICK_REPLY.PRODUCT_NEW,
-            CFGBTN.QUICK_REPLY.INFOMATION,
-            CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
-            CFGBTN.QUICK_REPLY.POLICY,
-        ]
-    };
-
-    return response;
-}
-
-let getQuickReplyTemplate = (exlTag) => {
-
-    let tags = [
-        CFGBTN.QUICK_REPLY.PRODUCT_LIST,
-        CFGBTN.QUICK_REPLY.BEST_SELLER,
-        CFGBTN.QUICK_REPLY.PRODUCT_NEW,
-        CFGBTN.QUICK_REPLY.INFOMATION,
-        CFGBTN.QUICK_REPLY.PAYMENT_METHOD,
-        CFGBTN.QUICK_REPLY.POLICY,
-    ];
-
-    tags = tags.filter((tag) => {
-        return tag.payload !== exlTag;
-    })
-
-    let response = {
-        "text": "Chọn đề mục để biết thêm thông tin nhé",
-        "quick_replies": tags
-    };
-
-    return response;
-}
-
-
-
-let getImageTemplate = () => {
-    let response = {
-        "attachment": {
-            "type": "image",
-            "payload": {
-                "url": IMAGES[0],
-                "is_reusable": true
-            }
-        }
-    };
-
-    return response;
-}
-
-
 let getButtonTemplate = (sender_psid) => {
     let response = {
         "attachment": {
@@ -168,7 +111,7 @@ let handleGetStarted = (sender_psid) => {
             let responseText = { 'text': `Xin chào ${username}. Mình là bot Mollie.` };
             await common.callSendAPI(sender_psid, responseText);
 
-            let quickReplyTemplate = getStartedQuickReplyTemplate();
+            let quickReplyTemplate = template.getStartedQuickReplyTemplate();
             await common.callSendAPI(sender_psid, quickReplyTemplate);
 
 
@@ -280,7 +223,7 @@ async function handleMessage(sender_psid, received_message) {
                 break;
         }
 
-        let quickReplyTemplate = getQuickReplyTemplate(tag);
+        let quickReplyTemplate = template.getQuickReplyTemplate(tag);
         await common.callSendAPI(sender_psid, quickReplyTemplate);
 
         return;
@@ -373,7 +316,7 @@ let handleShowImage = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            let templateImage = getImageTemplate();
+            let templateImage = template.getImageTemplate(IMAGES[0]);
             let templateBtn = getButtonTemplate(sender_psid);
 
             await common.callSendAPI(sender_psid, templateImage);
@@ -446,6 +389,5 @@ module.exports = {
     handleMessage: handleMessage,
     handleSendSetList: handleSendSetList,
     handleSendDressList: handleSendDressList,
-    handleSendSkirtList: handleSendSkirtList,
-    getStartedQuickReplyTemplate: getStartedQuickReplyTemplate
+    handleSendSkirtList: handleSendSkirtList
 }
