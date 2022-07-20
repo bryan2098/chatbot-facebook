@@ -125,14 +125,24 @@ let handleGetStarted = (sender_psid) => {
 let handleSendListProduct = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-
-
-
+            console.log('call handleSendListProduct');
             resolve('done');
         } catch (error) {
             reject(error)
         }
-    })
+    });
+}
+
+
+let handleSendFeaturedList = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            console.log('call send handleSendFeaturedList');
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    });
 }
 
 
@@ -189,9 +199,9 @@ async function handleMessage(sender_psid, received_message) {
 
         let tag = null;
         switch (received_message.quick_reply.payload) {
-            case 'PRODUCT_LIST':
-                await handleSendListProduct(sender_psid);
-                tag = 'PRODUCT_LIST';
+            case 'FEARTURED_LIST':
+                await handleSendFeaturedList(sender_psid);
+                tag = 'FEARTURED_LIST';
                 break;
 
             case 'BEST_SELLER':
@@ -384,7 +394,6 @@ let handleSendInformation = (sender_psid) => {
 
 module.exports = {
     handleGetStarted: handleGetStarted,
-    handleSendListProduct: handleSendListProduct,
     handlePostback: handlePostback,
     handleMessage: handleMessage,
     handleSendSetList: handleSendSetList,
