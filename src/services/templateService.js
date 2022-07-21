@@ -83,7 +83,7 @@ const getStartedQuickReplyTemplate = () => {
 const getQuickReplyTemplate = (exlTag) => {
 
     let tags = [
-        CFGBTN.QUICK_REPLY.PRODUCT_LIST,
+        CFGBTN.QUICK_REPLY.FEARTURED_LIST,
         CFGBTN.QUICK_REPLY.BEST_SELLER,
         CFGBTN.QUICK_REPLY.PRODUCT_NEW,
         CFGBTN.QUICK_REPLY.INFOMATION,
