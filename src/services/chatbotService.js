@@ -113,6 +113,9 @@ let handleGetStarted = (sender_psid) => {
             await common.callSendAPI(sender_psid, responseText);
 
             let quickReplyTemplate = template.getStartedQuickReplyTemplate();
+
+            console.log(quickReplyTemplate);
+
             await common.callSendAPI(sender_psid, quickReplyTemplate);
 
 
