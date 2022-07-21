@@ -4,6 +4,7 @@ const CFGBTN = require('../configs/btn.json');
 const DATA = require('../configs/data.json');
 const CFGBTNJS = require('../configs/btnConfig');
 const template = require('./templateService');
+const Product = require('../models/ProductModel');
 
 const IMAGES = [
     'https://res.cloudinary.com/dvweth7yl/image/upload/v1658238170/product/3.jpg',
@@ -37,20 +38,20 @@ let getListProductTemplate = (sender_psid) => {
 }
 
 
-let getSetListTemplate = () => {
+let getListTemplate = (products) => {
 
-    let elements = [
-        {
-            "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-            "subtitle": "Set Áo Trễ Vai Váy Dài Chữ A là một trong những sản phẩm nổi bật của Shop",
-            "image_url": IMAGES[0],
+    let elements = products.map(product => {
+        return {
+            "title": product.name,
+            "subtitle": `Màu: ${product.color} - Size: ${product.size} - Giá: ${product.price}`,
+            "image_url": product.image,
             "buttons": [
                 CFGBTN.PRODUCT.DETAIL,
             ],
-        },
-        CFGBTNJS.btnBackToList()
-    ];
+        }
+    });
 
+    elements.push(CFGBTNJS.btnBackToList())
 
     return common.getTemplate(elements, "generic");
 }
@@ -257,8 +258,9 @@ let handleSendSetList = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
+            const products = await Product.getAllProductType(1);
             // send generic message
-            let template = getSetListTemplate();
+            let template = getListTemplate(products);
             await common.callSendAPI(sender_psid, template);
 
 
@@ -273,8 +275,9 @@ let handleSendDressList = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
+            const products = await Product.getAllProductType(2);
             // send generic message
-            let template = getSetListTemplate(sender_psid);
+            let template = getListTemplate(products);
             await common.callSendAPI(sender_psid, template);
 
 
@@ -289,8 +292,9 @@ let handleSendSkirtList = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
+            const products = await Product.getAllProductType(3);
             // send generic message
-            let template = getSetListTemplate(sender_psid);
+            let template = getListTemplate(products);
             await common.callSendAPI(sender_psid, template);
 
 

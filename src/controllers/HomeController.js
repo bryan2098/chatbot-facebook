@@ -10,6 +10,7 @@ const CLIENT_EMAIL = process.env.CLIENT_EMAIL;
 const SHEET_ID = process.env.SHEET_ID;
 
 const common = require('../script/common');
+const Product = require('../models/ProductModel');
 
 
 let getHomePage = (req, res) => {
@@ -233,6 +234,19 @@ let writeDataToGoogleSheet = async (name, address, phone) => {
 }
 
 
+// test
+const getListProduct = async (req, res, next) => {
+    try {
+        const products = await Product.getAllProductType(1);
+
+
+        return res.status(200).send(products);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -241,5 +255,6 @@ module.exports = {
     setupProfile: setupProfile,
     setupPersistentMenu: setupPersistentMenu,
     handleOrder: handleOrder,
-    handlePostOrder: handlePostOrder
+    handlePostOrder: handlePostOrder,
+    getListProduct: getListProduct
 }
