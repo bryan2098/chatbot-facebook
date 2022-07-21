@@ -68,7 +68,7 @@ const getStartedQuickReplyTemplate = () => {
     let response = {
         "text": "Để xem nhiều sản phẩm hơn tại Shopee, khách yêu nhấn vào dấu 3 gạch ở góc phải màn hình nhé.",
         "quick_replies": [
-            CFGBTN.QUICK_REPLY.PRODUCT_LIST,
+            CFGBTN.QUICK_REPLY.FEARTURED_LIST,
             CFGBTN.QUICK_REPLY.BEST_SELLER,
             CFGBTN.QUICK_REPLY.PRODUCT_NEW,
             CFGBTN.QUICK_REPLY.INFOMATION,
