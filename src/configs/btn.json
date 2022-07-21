@@ -48,6 +48,11 @@
         }
     },
     "QUICK_REPLY": {
+        "PRODUCTS": {
+            "content_type": "text",
+            "title": "Danh mục sản phẩm",
+            "payload": "PRODUCTS"
+        },
         "FEARTURED_LIST": {
             "content_type": "text",
             "title": "Sản phẩm nổi bật",

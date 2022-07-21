@@ -113,9 +113,6 @@ let handleGetStarted = (sender_psid) => {
             await common.callSendAPI(sender_psid, responseText);
 
             let quickReplyTemplate = template.getStartedQuickReplyTemplate();
-
-            console.log(quickReplyTemplate);
-
             await common.callSendAPI(sender_psid, quickReplyTemplate);
 
 
@@ -203,6 +200,14 @@ async function handleMessage(sender_psid, received_message) {
 
         let tag = null;
         switch (received_message.quick_reply.payload) {
+            case 'PRODUCTS':
+                // send generic message
+                let response = getListProductTemplate(sender_psid);
+                await common.callSendAPI(sender_psid, response);
+
+                tag = 'PRODUCTS';
+                break;
+
             case 'FEARTURED_LIST':
                 await handleSendFeaturedList(sender_psid);
                 tag = 'FEARTURED_LIST';
