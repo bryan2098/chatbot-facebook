@@ -10,6 +10,8 @@ class Product {
             sql.andWhere('category_id', type);
         }
 
+        console.log('sql', sql);
+
         return sql;
     }
 }

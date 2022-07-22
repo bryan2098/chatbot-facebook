@@ -239,6 +239,8 @@ const getListProduct = async (req, res, next) => {
     try {
         const products = await Product.getAllProductType(1);
 
+        console.log('products', products);
+
 
         return res.status(200).send(products);
     } catch (error) {
