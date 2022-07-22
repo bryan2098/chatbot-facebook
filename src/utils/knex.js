@@ -40,7 +40,7 @@ knex.raw("SELECT 1").then(() => {
 })
     .catch((e) => {
         console.log("PostgreSQL not connected");
-        console.error(e);
+        console.error(e.message);
     });
 
 
