@@ -39,8 +39,9 @@ let getListProductTemplate = (sender_psid) => {
 
 
 let getListTemplate = (products) => {
+    let elements = [];
 
-    let elements = products.map(product => {
+    elements = products.map(product => {
         return {
             "title": product.name,
             "subtitle": `Màu: ${product.color} - Size: ${product.size} - Giá: ${product.price}`,
@@ -51,7 +52,9 @@ let getListTemplate = (products) => {
         }
     });
 
-    elements.push(CFGBTNJS.btnBackToList())
+    elements.push(CFGBTNJS.btnBackToList());
+
+    console.log('elements', elements);
 
     return common.getTemplate(elements, "generic");
 }
