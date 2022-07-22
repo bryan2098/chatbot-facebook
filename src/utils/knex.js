@@ -20,16 +20,16 @@ const knex = require('knex')({
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
+    },
+    pool: {
+        min: 1,
+        max: 20,
         createTimeoutMillis: 3000,
         acquireTimeoutMillis: 30000,
         idleTimeoutMillis: 30000,
         reapIntervalMillis: 1000,
         createRetryIntervalMillis: 100,
         propagateCreateError: false
-    },
-    pool: {
-        min: 1,
-        max: 20,
     },
     useNullAsDefault: true
 });
