@@ -13,7 +13,7 @@ let initWebRoutes = (app) => {
 
     router.get('/order', homeController.handleOrder);
     router.post('/order-ajax', homeController.handlePostOrder);
-    router.get('/list-product', homeController.getListProduct);
+    // router.get('/list-product', homeController.getListProduct);
 
     return app.use('/', router);
 }

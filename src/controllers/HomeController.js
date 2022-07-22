@@ -10,7 +10,7 @@ const CLIENT_EMAIL = process.env.CLIENT_EMAIL;
 const SHEET_ID = process.env.SHEET_ID;
 
 const common = require('../script/common');
-const Product = require('../models/ProductModel');
+// const Product = require('../models/ProductModel');
 
 
 let getHomePage = (req, res) => {
