@@ -24,5 +24,24 @@ const knex = require('knex')({
     useNullAsDefault: true
 });
 
+knex.raw("SELECT 1").then(() => {
+
+    let db = {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
+    };
+
+    console.log('db', db);
+
+    console.log("PostgreSQL connected");
+})
+    .catch((e) => {
+        console.log("PostgreSQL not connected");
+        console.error(e);
+    });
+
 
 module.exports = knex;

@@ -4,6 +4,7 @@ class Product {
     constructor() { };
 
     static getAllProductType(type) {
+        console.log('call getAllProductType', 1);
         let sql = knex('Product').select('*').orderBy('created_at', 'desc').limit(9);
 
         if (type) {
