@@ -23,7 +23,7 @@ const knex = require('knex')({
     },
     pool: {
         min: 1,
-        max: 20,
+        max: 100,
         createTimeoutMillis: 3000,
         acquireTimeoutMillis: 30000,
         idleTimeoutMillis: 30000,
@@ -35,16 +35,6 @@ const knex = require('knex')({
 });
 
 knex.raw("SELECT 1").then(() => {
-
-    let db = {
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-    };
-
-    console.log('db', db);
 
     console.log("PostgreSQL connected");
 })
