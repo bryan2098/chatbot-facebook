@@ -237,7 +237,7 @@ let writeDataToGoogleSheet = async (name, address, phone) => {
 // test
 const getListProduct = async (req, res, next) => {
     try {
-        const products = await Product.getAllProductType(1);
+        const products = await Product.getAllProductType(1) || [];
 
         console.log('products', products);
 
