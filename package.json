@@ -21,12 +21,12 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "request": "^2.88.2",
-    "sequelize": "6.9.0",
-    "sequelize-cli": "6.3.0"
+    "sequelize": "6.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/node": "^7.12.10",
-    "@babel/preset-env": "^7.12.11"
+    "@babel/preset-env": "^7.12.11",
+    "sequelize-cli": "6.3.0"
   }
 }
