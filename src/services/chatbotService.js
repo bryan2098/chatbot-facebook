@@ -288,7 +288,12 @@ let handleSendDressList = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            const products = await Product.getAllProductType(2);
+            const products = await Product.findAll({
+                where: {
+                    category_id: 2
+                }
+            });
+
             // send generic message
             let template = getListTemplate(products);
             await common.callSendAPI(sender_psid, template);
@@ -305,7 +310,12 @@ let handleSendSkirtList = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            const products = await Product.getAllProductType(3);
+            const products = await Product.findAll({
+                where: {
+                    category_id: 3
+                }
+            });
+
             // send generic message
             let template = getListTemplate(products);
             await common.callSendAPI(sender_psid, template);
