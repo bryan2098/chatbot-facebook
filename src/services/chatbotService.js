@@ -54,8 +54,6 @@ let getListTemplate = (products) => {
 
     elements.push(CFGBTNJS.btnBackToList());
 
-    console.log('elements', elements);
-
     return common.getTemplate(elements, "generic");
 }
 

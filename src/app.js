@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import viewEngine from "./configs/viewEngine";
 import webRoutes from "./routes/web";
-import connect from './configs/database';
+import database from './configs/database';
 
 let app = express();
 
@@ -15,7 +15,7 @@ webRoutes(app);
 
 let port = process.env.PORT || 8080;
 
-connect();
+database.connect();
 
 app.listen(port, () => {
     console.log("App is running at the port : " + port);

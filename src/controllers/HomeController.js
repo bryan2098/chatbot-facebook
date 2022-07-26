@@ -10,7 +10,7 @@ const CLIENT_EMAIL = process.env.CLIENT_EMAIL;
 const SHEET_ID = process.env.SHEET_ID;
 
 const common = require('../script/common');
-// const Product = require('../models/ProductModel');
+const Product = require('../models/ProductModel');
 
 
 let getHomePage = (req, res) => {
@@ -237,10 +237,11 @@ let writeDataToGoogleSheet = async (name, address, phone) => {
 // test
 const getListProduct = async (req, res, next) => {
     try {
-        const products = await Product.getAllProductType(1) || [];
-
-        console.log('products', products);
-
+        const products = await Product.findAll({
+            where: {
+                category_id: 1
+            }
+        });
 
         return res.status(200).send(products);
     } catch (error) {
