@@ -1,7 +1,6 @@
 require('dotenv').config();
 const common = require('../script/common');
 const CFGBTN = require('../configs/btn.json');
-const DATA = require('../configs/data.json');
 const CFGBTNJS = require('../configs/btnConfig');
 const template = require('./templateService');
 const Product = require('../models/ProductModel');
