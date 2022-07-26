@@ -267,7 +267,12 @@ let handleSendSetList = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            const products = await Product.getAllProductType(1);
+            const products = await Product.findAll({
+                where: {
+                    category_id: 1
+                }
+            });
+
             // send generic message
             let template = getListTemplate(products);
             await common.callSendAPI(sender_psid, template);
