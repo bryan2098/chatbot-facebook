@@ -200,7 +200,7 @@ let handleSendFeaturedList = (sender_psid) => {
 async function handlePostback(sender_psid, received_postback) {
     let payload = received_postback.payload;
 
-    let quickReplyTemplate = template.getQuickReplyTemplate(tag);
+    let quickReplyTemplate = template.getQuickReplyTemplate('');
 
     switch (payload) {
         case 'RESTART_BOT':
