@@ -460,10 +460,6 @@ let handleSendInformation = (sender_psid) => {
             // send information product
             await common.callSendAPI(sender_psid, template.templateInfoProduct());
 
-            // send generic message
-            let response = getListProductTemplate(sender_psid);
-            await common.callSendAPI(sender_psid, response);
-
             resolve('done');
         } catch (error) {
             reject(error)

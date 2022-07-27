@@ -30,12 +30,31 @@ function validateInputFields() {
 
     if (phoneNumber.val() === "") {
         phoneNumber.addClass("is-invalid");
-        return true;
     } else {
         phoneNumber.removeClass("is-invalid");
+        return false;
     }
 
-    return false;
+
+    let address = $('#address');
+    if (address.val() === "") {
+        address.addClass("is-invalid");
+    } else {
+        address.removeClass("is-invalid");
+        return false;
+    }
+
+    let color = $('#color');
+
+    if (color.val() === "") {
+        color.addClass("is-invalid");
+    } else {
+        color.removeClass("is-invalid");
+        return false;
+    }
+
+
+    return true;
 }
 
 
@@ -55,8 +74,10 @@ function handleClickButtonOrder() {
             product: $('#product').val(),
             color: $('#color').val(),
             size: $('#size').val(),
-            amount: $('#amount').val()
+            amount: $('#amount').val() || 1
         };
+
+        console.log('data', data);
 
         if (!check) {
             //close webview
@@ -79,8 +100,11 @@ function handleClickButtonOrder() {
                 success: function (res) {
                     console.log('success', res);
 
-                    elMessageOrder.addClass('text-success');
-                    elMessageOrder.html('<b>Đặt hàng thành công</b>');
+                    if (!res.error && !res.error.code) {
+                        elMessageOrder.addClass('text-success');
+                        elMessageOrder.html('<b>Đặt hàng thành công</b>');
+                    }
+
                 },
                 error: function (error) {
                     console.log(error);

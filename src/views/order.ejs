@@ -45,6 +45,7 @@
                 <div class="form-group">
                     <label for="address">Địa chỉ (<span style="color: red">*</span>):</label>
                     <input type="text" id="address" class="form-control" placeholder="Địa chỉ nhận">
+                    <div class="invalid-feedback">Địa chỉ không hợp lệ</div>
                 </div>
                 <div class="form-group">
                     <label for="phoneNumber">Số điện thoại (<span style="color: red">*</span>):</label>
@@ -66,16 +67,17 @@
                 <div class="form-group">
                     <label for="color"> Màu sắc (<span style="color: red">*</span>):</label>
                     <input type="text" id="color" class="form-control" placeholder="Đỏ, Vàng, Trắng, ...">
+                    <div class="invalid-feedback">Màu sắc không hợp lệ</div>
                 </div>
 
                 <div class="form-group">
                     <label for="color"> Kích thước (<span style="color: red">Nếu có</span>):</label>
-                    <input type="text" id="size" class="form-control" placeholder="S, M, L">
+                    <input type="text" id="size" class="form-control" placeholder="Dưới 55kg">
                 </div>
 
                 <div class="form-group">
                     <label for="color"> Số lượng </label>
-                    <input type="text" id="amount" class="form-control" placeholder="1">
+                    <input type="text" id="amount" class="form-control" placeholder="Mặc định sẽ là 1">
                 </div>
 
                 <button class="btn btn-primary" id="btnOrder"> MUA SẢN PHẨM </button>
