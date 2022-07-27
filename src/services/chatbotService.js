@@ -55,6 +55,15 @@ let getListTemplate = (products, sender_psid) => {
         }
     });
 
+    elements.push({
+        "title": "Vận chuyển",
+        "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
+        "image_url": IMAGES[2],
+        "buttons": [
+            CFGBTNJS.btnBuyProduct(sender_psid),
+        ]
+    })
+
     elements.push(CFGBTNJS.btnBackToList());
 
     return common.getTemplate(elements, "generic");
