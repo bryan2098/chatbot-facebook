@@ -157,11 +157,18 @@ let setupPersistentMenu = async (req, res) => {
 }
 
 
-let handleOrder = (req, res) => {
+let handleOrder = async (req, res) => {
     let senderId = req.query.senderId;
 
+    let products = await Product.findAll({
+        order: [
+            ['createdAt', 'DESC']
+        ]
+    });
+
     return res.status(200).render('order.ejs', {
-        senderId: senderId
+        senderId: senderId,
+        products: products
     });
 }
 

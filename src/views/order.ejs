@@ -51,6 +51,29 @@
                     <input type="text" id="phoneNumber" class="form-control" placeholder="Số điện thoại...">
                     <div class="invalid-feedback">Số điện thoại không hợp lệ.</div>
                 </div>
+
+                <div class="form-group">
+                    <label for="selectProduct">Chọn sản phẩm (<span style="color: red">*</span>):</label>
+                    <select class="form-control" id="selectProduct">
+                        <% for(let product of products){ %>
+                            <option value="<%= product.name%>">
+                                <%= product.name%>
+                            </option>
+                            <% }%>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="color"> Màu sắc (<span style="color: red">*</span>):</label>
+                    <input type="text" id="color" class="form-control" placeholder="Đỏ, Vàng, Trắng, ...">
+                </div>
+
+                <div class="form-group">
+                    <label for="color"> Kích thước (<span style="color: red">Nếu có</span>):</label>
+                    <input type="text" id="color" class="form-control" placeholder="S, M, L">
+                </div>
+
                 <button class="btn btn-primary" id="btnOrder"> MUA SẢN PHẨM </button>
             </div>
 
