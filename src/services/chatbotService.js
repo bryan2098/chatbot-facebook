@@ -138,7 +138,9 @@ let handleSendBestSeller = (sender_psid) => {
         try {
             const products = await Product.findAll({
                 limit: 8,
-                order: '"sold" DESC'
+                order: [
+                    ['sold', 'DESC']
+                ]
             });
 
             // send generic message
@@ -156,7 +158,9 @@ let handleSendProductNew = (sender_psid) => {
         try {
             const products = await Product.findAll({
                 limit: 8,
-                order: '"createdAt" DESC'
+                order: [
+                    ['createdAt', 'DESC']
+                ]
             });
 
             // send generic message
@@ -175,7 +179,9 @@ let handleSendFeaturedList = (sender_psid) => {
         try {
             const products = await Product.findAll({
                 limit: 8,
-                order: '"outstanding" DESC'
+                order: [
+                    ['outstanding', 'DESC']
+                ]
             });
 
             // send generic message
