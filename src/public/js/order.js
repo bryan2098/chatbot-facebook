@@ -41,6 +41,10 @@ function validateInputFields() {
 
 function handleClickButtonOrder() {
     $("#btnOrder").on("click", function (e) {
+        var elMessageOrder = $('#messageOrder');
+
+        elMessageOrder.html(' ');
+
         let check = validateInputFields(); //return true or false
 
         let data = {
@@ -74,6 +78,9 @@ function handleClickButtonOrder() {
                 data: JSON.stringify(data),
                 success: function (res) {
                     console.log('success', res);
+
+                    elMessageOrder.addClass('text-success');
+                    elMessageOrder.html('<b>Đặt hàng thành công</b>');
                 },
                 error: function (error) {
                     console.log(error);
