@@ -233,6 +233,10 @@ async function handlePostback(sender_psid, received_postback) {
         case 'BACK_TO_LIST':
             let response = getListProductTemplate(sender_psid);
             await common.callSendAPI(sender_psid, response);
+
+
+            let quickReplyTemplate = template.getStartedQuickReplyTemplate();
+            await common.callSendAPI(sender_psid, quickReplyTemplate);
             break;
 
         default:
