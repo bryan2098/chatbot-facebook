@@ -43,10 +43,14 @@ let getListTemplate = (products) => {
     elements = products.map(product => {
         return {
             "title": product.name,
-            "subtitle": `Màu: ${product.color} - Size: ${product.size} - Giá: ${product.price}`,
+            "subtitle": `Màu: ${product.color} - Size: ${product.size} - Giá: ${product.price}đ`,
             "image_url": product.image,
             "buttons": [
-                CFGBTN.PRODUCT.DETAIL,
+                {
+                    "type": "web_url",
+                    "url": "https://www.originalcoastclothing.com/",
+                    "title": "Chi Tiết",
+                }
             ],
         }
     });
@@ -59,16 +63,6 @@ let getListTemplate = (products) => {
 
 let getProductDetailTemplate = () => {
     let elements = [
-        {
-            "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-            "subtitle": "296.000đ",
-            "image_url": IMAGES[0],
-        },
-        {
-            "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-            "subtitle": "296.000đ",
-            "image_url": IMAGES[0],
-        },
         {
             "title": "Set Áo Trễ Vai Váy Dài Chữ A",
             "subtitle": "296.000đ",
