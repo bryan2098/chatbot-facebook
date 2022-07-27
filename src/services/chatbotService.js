@@ -12,6 +12,17 @@ const IMAGES = [
     'https://res.cloudinary.com/dvweth7yl/image/upload/v1658238138/product/4.jpg'
 ]
 
+let btnBuyProductDeliver = () => {
+    return {
+        "title": "Vận chuyển",
+        "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
+        "image_url": IMAGES[1],
+        "buttons": [
+            CFGBTNJS.btnBuyProduct(sender_psid),
+        ],
+    };
+}
+
 let getListProductTemplate = (sender_psid) => {
     let elements = [
         {
@@ -23,14 +34,7 @@ let getListProductTemplate = (sender_psid) => {
                 CFGBTN.PRODUCT_LIST.SKRIT_LIST
             ],
         },
-        {
-            "title": "Vận chuyển",
-            "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
-            "image_url": IMAGES[1],
-            "buttons": [
-                CFGBTNJS.btnBuyProduct(sender_psid),
-            ],
-        },
+        btnBuyProductDeliver()
     ];
 
     return common.getTemplate(elements, "generic");
@@ -55,14 +59,7 @@ let getListTemplate = (products, sender_psid) => {
         }
     });
 
-    elements.push({
-        "title": "Vận chuyển",
-        "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
-        "image_url": IMAGES[2],
-        "buttons": [
-            CFGBTNJS.btnBuyProduct(sender_psid),
-        ]
-    })
+    elements.push(btnBuyProductDeliver());
 
     elements.push(CFGBTNJS.btnBackToList());
 
