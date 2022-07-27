@@ -48,8 +48,8 @@ let getListTemplate = (products) => {
             "buttons": [
                 {
                     "type": "web_url",
-                    "url": "https://www.originalcoastclothing.com/",
                     "title": "Chi Tiết",
+                    "url": product.shopee,
                 }
             ],
         }
