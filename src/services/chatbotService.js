@@ -12,7 +12,7 @@ const IMAGES = [
     'https://res.cloudinary.com/dvweth7yl/image/upload/v1658238138/product/4.jpg'
 ]
 
-let btnBuyProductDeliver = () => {
+let btnBuyProductDeliver = (sender_psid) => {
     return {
         "title": "Vận chuyển",
         "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
@@ -34,7 +34,7 @@ let getListProductTemplate = (sender_psid) => {
                 CFGBTN.PRODUCT_LIST.SKRIT_LIST
             ],
         },
-        btnBuyProductDeliver()
+        btnBuyProductDeliver(sender_psid)
     ];
 
     return common.getTemplate(elements, "generic");
@@ -59,8 +59,7 @@ let getListTemplate = (products, sender_psid) => {
         }
     });
 
-    elements.push(btnBuyProductDeliver());
-
+    elements.push(btnBuyProductDeliver(sender_psid));
     elements.push(CFGBTNJS.btnBackToList());
 
     return common.getTemplate(elements, "generic");
