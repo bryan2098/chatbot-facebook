@@ -55,7 +55,6 @@ let getListTemplate = (products, sender_psid) => {
         }
     });
 
-    elements.push(CFGBTNJS.btnBuyProduct(sender_psid));
     elements.push(CFGBTNJS.btnBackToList());
 
     return common.getTemplate(elements, "generic");
