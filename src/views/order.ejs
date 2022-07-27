@@ -54,7 +54,7 @@
 
                 <div class="form-group">
                     <label for="selectProduct">Chọn sản phẩm (<span style="color: red">*</span>):</label>
-                    <select class="form-control" id="selectProduct">
+                    <select class="form-control" id="product">
                         <% for(let product of products){ %>
                             <option value="<%= product.name%>">
                                 <%= product.name%>
@@ -63,7 +63,6 @@
                     </select>
                 </div>
 
-
                 <div class="form-group">
                     <label for="color"> Màu sắc (<span style="color: red">*</span>):</label>
                     <input type="text" id="color" class="form-control" placeholder="Đỏ, Vàng, Trắng, ...">
@@ -71,7 +70,12 @@
 
                 <div class="form-group">
                     <label for="color"> Kích thước (<span style="color: red">Nếu có</span>):</label>
-                    <input type="text" id="color" class="form-control" placeholder="S, M, L">
+                    <input type="text" id="size" class="form-control" placeholder="S, M, L">
+                </div>
+
+                <div class="form-group">
+                    <label for="color"> Số lượng </label>
+                    <input type="text" id="amount" class="form-control" placeholder="1">
                 </div>
 
                 <button class="btn btn-primary" id="btnOrder"> MUA SẢN PHẨM </button>

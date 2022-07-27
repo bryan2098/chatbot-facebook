@@ -172,6 +172,8 @@ let handleOrder = async (req, res) => {
     });
 }
 
+
+
 let handlePostOrder = async (req, res) => {
     try {
         let customerName = "";
@@ -183,17 +185,25 @@ let handlePostOrder = async (req, res) => {
 
         const address = req.body.address;
         const phoneNumber = req.body.phoneNumber;
+        const product = req.body.product;
+        const color = req.body.color;
+        const size = req.body.size;
+        const amount = req.body.amount;
 
         let response = {
             "text": `- ĐẶT HÀNG -
         \n Họ và tên: ${customerName}
         \n Địa chỉ: ${address}
         \n Số điện thoại: ${phoneNumber}
+        \n Sản phẩm: ${product}
+        \n Màu sắc: ${color}
+        \n Kích thước: ${size}
+        \n Số lượng: ${amount}
         \n Xin cảm ơn quý khác đã đặt sản phẩm
         `};
 
         // ghi file excel
-        await writeDataToGoogleSheet(customerName, address, phoneNumber);
+        await writeDataToGoogleSheet(customerName, address, phoneNumber, product, color, size, amount);
 
         await common.callSendAPI(req.body.psid, response);
 
@@ -212,7 +222,7 @@ let handlePostOrder = async (req, res) => {
 
 
 
-let writeDataToGoogleSheet = async (name, address, phone) => {
+let writeDataToGoogleSheet = async (name, address, phone, product, color, size, amount) => {
     try {
         // Initialize the sheet - doc ID is the long id in the sheets URL
         const doc = new GoogleSpreadsheet(SHEET_ID);
@@ -233,6 +243,10 @@ let writeDataToGoogleSheet = async (name, address, phone) => {
                 "Tên": name,
                 "Địa chỉ": address,
                 "Số điện thoại": `'${phone}`,
+                "Sản phẩm": `'${product}`,
+                "Màu sắc": `'${color}`,
+                "Kích thước": `'${size}`,
+                "Số lượng": `'${amount}`,
             });
     }
     catch (e) {

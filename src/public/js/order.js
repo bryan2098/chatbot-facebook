@@ -47,7 +47,11 @@ function handleClickButtonOrder() {
             psid: $("#psid").val() || '',
             customerName: $("#customerName").val(),
             address: $("#address").val(),
-            phoneNumber: $("#phoneNumber").val()
+            phoneNumber: $("#phoneNumber").val(),
+            product: $('#product').val(),
+            color: $('#color').val(),
+            size: $('#size').val(),
+            amount: $('#amount').val()
         };
 
         if (!check) {
