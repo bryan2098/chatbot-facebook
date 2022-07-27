@@ -37,7 +37,7 @@ let getListProductTemplate = (sender_psid) => {
 }
 
 
-let getListTemplate = (products) => {
+let getListTemplate = (products, sender_psid) => {
     let elements = [];
 
     elements = products.map(product => {
@@ -55,6 +55,7 @@ let getListTemplate = (products) => {
         }
     });
 
+    elements.push(CFGBTNJS.btnBuyProduct(sender_psid));
     elements.push(CFGBTNJS.btnBackToList());
 
     return common.getTemplate(elements, "generic");
@@ -261,13 +262,14 @@ let handleSendSetList = (sender_psid) => {
         try {
 
             const products = await Product.findAll({
+                limit: 8,
                 where: {
                     category_id: 1
                 }
             });
 
             // send generic message
-            let template = getListTemplate(products);
+            let template = getListTemplate(products, sender_psid);
             await common.callSendAPI(sender_psid, template);
 
 
@@ -283,13 +285,14 @@ let handleSendDressList = (sender_psid) => {
         try {
 
             const products = await Product.findAll({
+                limit: 8,
                 where: {
                     category_id: 2
                 }
             });
 
             // send generic message
-            let template = getListTemplate(products);
+            let template = getListTemplate(products, sender_psid);
             await common.callSendAPI(sender_psid, template);
 
 
@@ -305,13 +308,14 @@ let handleSendSkirtList = (sender_psid) => {
         try {
 
             const products = await Product.findAll({
+                limit: 8,
                 where: {
                     category_id: 3
                 }
             });
 
             // send generic message
-            let template = getListTemplate(products);
+            let template = getListTemplate(products, sender_psid);
             await common.callSendAPI(sender_psid, template);
 
 
