@@ -66,21 +66,21 @@ let getListTemplate = (products, sender_psid) => {
 }
 
 
-let getProductDetailTemplate = () => {
-    let elements = [
-        {
-            "title": "Set Áo Trễ Vai Váy Dài Chữ A",
-            "subtitle": "296.000đ",
-            "image_url": IMAGES[0],
-            "buttons": [
-                CFGBTN.PRODUCT.SHOW_IMAGE,
-            ],
-        },
-        CFGBTNJS.btnBackToList()
-    ];
+// let getProductDetailTemplate = () => {
+//     let elements = [
+//         {
+//             "title": "Set Áo Trễ Vai Váy Dài Chữ A",
+//             "subtitle": "296.000đ",
+//             "image_url": IMAGES[0],
+//             "buttons": [
+//                 CFGBTN.PRODUCT.SHOW_IMAGE,
+//             ],
+//         },
+//         CFGBTNJS.btnBackToList()
+//     ];
 
-    return common.getTemplate(elements, "generic");
-}
+//     return common.getTemplate(elements, "generic");
+// }
 
 
 let getButtonTemplate = (sender_psid) => {
@@ -99,6 +99,17 @@ let getButtonTemplate = (sender_psid) => {
     }
 
     return response;
+}
+
+
+let handleSendListProduct = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
 }
 
 
@@ -122,10 +133,17 @@ let handleGetStarted = (sender_psid) => {
     })
 }
 
-let handleSendListProduct = (sender_psid) => {
+let handleSendBestSeller = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log('call handleSendListProduct');
+            const products = await Product.findAll({
+                limit: 8,
+                order: '"sold" DESC'
+            });
+
+            // send generic message
+            let template = getListTemplate(products, sender_psid);
+            await common.callSendAPI(sender_psid, template);
             resolve('done');
         } catch (error) {
             reject(error)
@@ -133,11 +151,37 @@ let handleSendListProduct = (sender_psid) => {
     });
 }
 
+let handleSendProductNew = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const products = await Product.findAll({
+                limit: 8,
+                order: '"createdAt" DESC'
+            });
 
+            // send generic message
+            let template = getListTemplate(products, sender_psid);
+            await common.callSendAPI(sender_psid, template);
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    });
+}
+
+// san pham noi bat
 let handleSendFeaturedList = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log('call send handleSendFeaturedList');
+            const products = await Product.findAll({
+                limit: 8,
+                order: '"outstanding" DESC'
+            });
+
+            // send generic message
+            let template = getListTemplate(products, sender_psid);
+            await common.callSendAPI(sender_psid, template);
+
             resolve('done');
         } catch (error) {
             reject(error)
@@ -173,7 +217,7 @@ async function handlePostback(sender_psid, received_postback) {
             break;
 
         case 'PRODUCT_DETAIL':
-            await handleDetailProduct(sender_psid);
+            // await handleDetailProduct(sender_psid);
             break;
 
         case 'SHOW_IMAGE':
@@ -213,12 +257,12 @@ async function handleMessage(sender_psid, received_message) {
                 break;
 
             case 'BEST_SELLER':
-                await handleSendListProduct(sender_psid);
+                await handleSendBestSeller(sender_psid);
                 tag = 'BEST_SELLER';
                 break;
 
             case 'PRODUCT_NEW':
-                await handleSendListProduct(sender_psid);
+                await handleSendProductNew(sender_psid);
                 tag = 'PRODUCT_NEW';
                 break;
 
@@ -335,21 +379,21 @@ let handleBackToList = async (sender_psid) => {
 }
 
 
-let handleDetailProduct = (sender_psid) => {
-    return new Promise(async (resolve, reject) => {
-        try {
+// let handleDetailProduct = (sender_psid) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
 
-            // send generic message
-            let template = getProductDetailTemplate();
-            await common.callSendAPI(sender_psid, template);
+//             // send generic message
+//             let template = getProductDetailTemplate();
+//             await common.callSendAPI(sender_psid, template);
 
 
-            resolve('done');
-        } catch (error) {
-            reject(error)
-        }
-    })
-}
+//             resolve('done');
+//         } catch (error) {
+//             reject(error)
+//         }
+//     })
+// }
 
 let handleShowImage = (sender_psid) => {
     return new Promise(async (resolve, reject) => {

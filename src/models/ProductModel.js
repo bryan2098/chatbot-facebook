@@ -9,6 +9,8 @@ var Product = sequelize.define('Product', {
     category_id: Sequelize.INTEGER,
     name: Sequelize.STRING,
     shopee: Sequelize.STRING,
+    outstanding: Sequelize.INTEGER,
+    sold: Sequelize.INTEGER,
     brand: Sequelize.STRING,
     color: Sequelize.STRING,
     size: Sequelize.STRING,
