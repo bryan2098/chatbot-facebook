@@ -200,6 +200,8 @@ let handleSendFeaturedList = (sender_psid) => {
 async function handlePostback(sender_psid, received_postback) {
     let payload = received_postback.payload;
 
+    let quickReplyTemplate = template.getStartedQuickReplyTemplate();
+
     switch (payload) {
         case 'RESTART_BOT':
         case 'GET_STARTED':
@@ -216,10 +218,12 @@ async function handlePostback(sender_psid, received_postback) {
 
         case 'DRESS_LIST':
             await handleSendDressList(sender_psid);
+            await common.callSendAPI(sender_psid, quickReplyTemplate);
             break;
 
         case 'SKIRT_LIST':
             await handleSendSkirtList(sender_psid);
+            await common.callSendAPI(sender_psid, quickReplyTemplate);
             break;
 
         case 'PRODUCT_DETAIL':
@@ -233,9 +237,6 @@ async function handlePostback(sender_psid, received_postback) {
         case 'BACK_TO_LIST':
             let response = getListProductTemplate(sender_psid);
             await common.callSendAPI(sender_psid, response);
-
-
-            let quickReplyTemplate = template.getStartedQuickReplyTemplate();
             await common.callSendAPI(sender_psid, quickReplyTemplate);
             break;
 
