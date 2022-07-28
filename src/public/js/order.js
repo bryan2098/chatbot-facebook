@@ -73,7 +73,7 @@ function handleClickButtonOrder() {
             phoneNumber: $("#phoneNumber").val(),
             product: $('#product').val(),
             color: $('#color').val(),
-            size: $('#size').val(),
+            size: $('#size').val() || "Mặc định",
             amount: $('#amount').val() || 1
         };
 

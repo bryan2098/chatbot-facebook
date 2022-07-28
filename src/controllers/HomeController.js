@@ -243,8 +243,8 @@ let writeDataToGoogleSheet = async (name, address, phone, product, color, size, 
             "Địa chỉ": address,
             "Số điện thoại": `'${phone}`,
             "Sản phẩm": `'${product}`,
-            "Màu sắc": `'${color ? color : 'Không'}`,
-            "Kích thước": `'${size ? size : 'Mặc định là S'}`,
+            "Màu sắc": `'${color}`,
+            "Kích thước": `'${size}`,
             "Số lượng": `'${amount}`,
             "Thời gian": moment().format('DD/MM/YYYY h:mm:ss a').zone("+08:00")
         }
