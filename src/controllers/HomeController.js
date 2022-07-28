@@ -246,7 +246,7 @@ let writeDataToGoogleSheet = async (name, address, phone, product, color, size, 
             "Màu sắc": `'${color}`,
             "Kích thước": `'${size}`,
             "Số lượng": `'${amount}`,
-            "Thời gian": moment().format('DD/MM/YYYY h:mm:ss a').zone("+08:00")
+            "Thời gian": moment().tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY h:mm:ss a')
         }
 
         // append rows
