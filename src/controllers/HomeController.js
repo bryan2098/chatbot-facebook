@@ -11,6 +11,7 @@ const SHEET_ID = process.env.SHEET_ID;
 
 const common = require('../script/common');
 const Product = require('../models/ProductModel');
+const moment = require('moment');
 
 
 let getHomePage = (req, res) => {
@@ -247,6 +248,7 @@ let writeDataToGoogleSheet = async (name, address, phone, product, color, size, 
                 "Màu sắc": `'${color}`,
                 "Kích thước": `'${size}`,
                 "Số lượng": `'${amount}`,
+                "Thời gian": moment().format('DD/MM/YYYY h:mm:ss a')
             });
     }
     catch (e) {
