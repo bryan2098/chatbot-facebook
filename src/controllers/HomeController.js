@@ -238,18 +238,19 @@ let writeDataToGoogleSheet = async (name, address, phone, product, color, size, 
 
         const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
 
+        let objWrite = {
+            "Tên": name,
+            "Địa chỉ": address,
+            "Số điện thoại": `'${phone}`,
+            "Sản phẩm": `'${product}`,
+            "Màu sắc": `'${color ? color : 'Không'}`,
+            "Kích thước": `'${size ? size : 'Mặc định là S'}`,
+            "Số lượng": `'${amount}`,
+            "Thời gian": moment().format('DD/MM/YYYY h:mm:ss a').zone("+08:00")
+        }
+
         // append rows
-        await sheet.addRow(
-            {
-                "Tên": name,
-                "Địa chỉ": address,
-                "Số điện thoại": `'${phone}`,
-                "Sản phẩm": `'${product}`,
-                "Màu sắc": `'${color}`,
-                "Kích thước": `'${size}`,
-                "Số lượng": `'${amount}`,
-                "Thời gian": moment().format('DD/MM/YYYY h:mm:ss a')
-            });
+        await sheet.addRow(objWrite);
     }
     catch (e) {
         console.log(e)
