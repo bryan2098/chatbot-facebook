@@ -236,7 +236,7 @@ async function handlePostback(sender_psid, received_postback) {
 
 
         case 'JUMP_LIST':
-            await handleSendSkirtList(sender_psid);
+            await handleSendJumpList(sender_psid);
             await common.callSendAPI(sender_psid, quickReplyTemplate);
             break;
 
@@ -402,6 +402,30 @@ let handleSendSkirtList = (sender_psid) => {
     })
 }
 
+
+let handleSendJumpList = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            const products = await Product.findAll({
+                limit: 8,
+                where: {
+                    category_id: 4
+                }
+            });
+
+            // send generic message
+            let template = getListTemplate(products, sender_psid);
+            await common.callSendAPI(sender_psid, template);
+
+
+            resolve('done');
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 let handleBackToList = async (sender_psid) => {
     await handleSendListProduct(sender_psid);
 }
@@ -495,5 +519,6 @@ module.exports = {
     handleMessage: handleMessage,
     handleSendSetList: handleSendSetList,
     handleSendDressList: handleSendDressList,
-    handleSendSkirtList: handleSendSkirtList
+    handleSendSkirtList: handleSendSkirtList,
+    handleSendJumpList: handleSendJumpList
 }
