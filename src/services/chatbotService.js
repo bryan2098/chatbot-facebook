@@ -33,17 +33,9 @@ let getListProductTemplate = (sender_psid) => {
                 CFGBTN.PRODUCT_LIST.DRESS_LIST
             ],
         },
-        btnBuyProductDeliver(sender_psid)
-    ];
-
-    return common.getTemplate(elements, "generic");
-}
-
-let getListProductTemplateV2 = (sender_psid) => {
-    let elements = [
         {
             "title": "Danh mục sản phẩm",
-            "image_url": IMAGES[0],
+            "image_url": IMAGES[1],
             "buttons": [
                 CFGBTN.PRODUCT_LIST.SKRIT_LIST,
                 CFGBTN.PRODUCT_LIST.JUMP_LIST
@@ -258,10 +250,7 @@ async function handlePostback(sender_psid, received_postback) {
 
         case 'BACK_TO_LIST':
             let response = getListProductTemplate(sender_psid);
-            let response2 = getListProductTemplateV2(sender_psid);
-
             await common.callSendAPI(sender_psid, response);
-            await common.callSendAPI(sender_psid, response2);
 
             await common.callSendAPI(sender_psid, quickReplyTemplate);
             break;
@@ -284,10 +273,7 @@ async function handleMessage(sender_psid, received_message) {
             case 'PRODUCTS':
                 // send generic message
                 let response = getListProductTemplate(sender_psid);
-                let response2 = getListProductTemplateV2(sender_psid);
-
                 await common.callSendAPI(sender_psid, response);
-                await common.callSendAPI(sender_psid, response2);
 
 
                 tag = 'PRODUCTS';
