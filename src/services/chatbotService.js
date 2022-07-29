@@ -242,6 +242,12 @@ async function handlePostback(sender_psid, received_postback) {
             await common.callSendAPI(sender_psid, quickReplyTemplate);
             break;
 
+
+        case 'JUMP_LIST':
+            await handleSendSkirtList(sender_psid);
+            await common.callSendAPI(sender_psid, quickReplyTemplate);
+            break;
+
         case 'PRODUCT_DETAIL':
             // await handleDetailProduct(sender_psid);
             break;

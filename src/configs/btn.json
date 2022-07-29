@@ -24,7 +24,7 @@
         },
         "JUMP_LIST": {
             "type": "postback",
-            "title": "Váy",
+            "title": "Jumpsuit",
             "payload": "JUMP_LIST"
         },
         "BEST_SELLER": {
