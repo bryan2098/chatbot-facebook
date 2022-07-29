@@ -22,6 +22,11 @@
             "title": "Váy",
             "payload": "SKIRT_LIST"
         },
+        "JUMP_LIST": {
+            "type": "postback",
+            "title": "Váy",
+            "payload": "JUMP_LIST"
+        },
         "BEST_SELLER": {
             "type": "postback",
             "title": "Sản phẩm bán chạy",
