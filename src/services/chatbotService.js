@@ -16,7 +16,7 @@ let btnBuyProductDeliver = (sender_psid) => {
     return {
         "title": "Vận chuyển",
         "subtitle": "Sản phẩm được giao trong vòng từ 3-4 ngày tùy thuộc vào khu vực nhé.",
-        "image_url": IMAGES[2],
+        "image_url": IMAGES[3],
         "buttons": [
             CFGBTNJS.btnBuyProduct(sender_psid),
         ],
