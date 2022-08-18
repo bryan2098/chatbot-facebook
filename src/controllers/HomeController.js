@@ -119,7 +119,7 @@ let setupPersistentMenu = async (req, res) => {
                     {
                         "type": "web_url",
                         "title": "Shopee Mollie",
-                        "url": "https://shopee.vn/mollieshop2501",
+                        "url": "https://shopee.vn/mollie_shop2502",
                         "webview_height_ratio": "full"
                     },
                     {
