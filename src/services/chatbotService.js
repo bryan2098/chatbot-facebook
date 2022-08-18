@@ -330,6 +330,7 @@ async function handleMessage(sender_psid, received_message) {
     // }
 
     // Sends the response message
+    
     common.callSendAPI(sender_psid, response);
 }
 
