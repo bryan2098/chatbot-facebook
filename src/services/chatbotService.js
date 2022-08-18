@@ -320,14 +320,14 @@ async function handleMessage(sender_psid, received_message) {
     }
 
     // Check if the message contains text
-    if (received_message.text) {
+    // if (received_message.text) {
 
-        let username = await common.getUserName(sender_psid);
-        // Create the payload for a basic text message
-        response = {
-            "text": `Chào mừng ${username} đến với Mollie Shop. ${username} đợi một chút sẽ có cô bé dễ thương trả lời cho nhé. <3`
-        }
-    }
+    //     let username = await common.getUserName(sender_psid);
+    //     // Create the payload for a basic text message
+    //     response = {
+    //         "text": `Chào mừng ${username} đến với Mollie Shop. ${username} đợi một chút sẽ có cô bé dễ thương trả lời cho nhé. <3`
+    //     }
+    // }
 
     // Sends the response message
     common.callSendAPI(sender_psid, response);
