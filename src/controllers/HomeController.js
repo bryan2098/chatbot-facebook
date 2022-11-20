@@ -274,6 +274,12 @@ const getListProduct = async (req, res, next) => {
 }
 
 
+const getJSONProduct = async (req, res, next) => {
+    const products = await Product.findAll();
+
+    return res.status(200).send(products);
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -283,5 +289,6 @@ module.exports = {
     setupPersistentMenu: setupPersistentMenu,
     handleOrder: handleOrder,
     handlePostOrder: handlePostOrder,
-    getListProduct: getListProduct
+    getListProduct: getListProduct,
+    getJSONProduct: getJSONProduct
 }
